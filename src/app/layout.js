@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Nav";
+import { Providers } from "./providers";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,23 +15,26 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Med Flex",
+  title: "MedFlex | Premium Doctor Appointment System",
   description:
-    "this is a medical appointment scheduling app built with Next.js and Tailwind CSS",
+    "Discover certified experts and book appointments seamlessly with MedFlex.",
 };
 
 export default function RootLayout({ children }) {
   return (
+    // suppressHydrationWarning thame synchronization validation issue block kore
     <html
       lang="en"
-      data-theme="light"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <main>
-          
-          <Navbar/>
-          {children}</main>
+      <body className="min-h-full bg-white dark:bg-slate-950 text-[#0F172A] dark:text-slate-50 flex flex-col transition-colors duration-300">
+        <Providers>
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+        </Providers>
       </body>
     </html>
   );

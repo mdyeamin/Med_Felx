@@ -1,25 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@heroui/react";
-import { FiSun, FiMenu, FiX } from "react-icons/fi";
+import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  // Hydration state sync mismatch pipeline error handle korar jonno hook setup
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "All Appointments", path: "/all-appointments" },
     { name: "Dashboard", path: "/dashboard" },
   ];
+
+  // Global helper functionality switch override execution state block handler
+  const handleThemeToggle = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   return (
     <>
-      <nav className="w-full h-20 border-b border-gray-200 bg-[#F8FAFC]/90 backdrop-blur-md sticky top-0 z-50 px-6 md:px-14 flex items-center justify-between">
+      <nav className="w-full h-20 border-b border-gray-200 dark:border-slate-800 bg-[#F8FAFC]/90 dark:bg-slate-900/90 backdrop-blur-md sticky top-0 z-50 px-6 md:px-14 flex items-center justify-between transition-colors duration-300">
         {/* Brand Logo Identity */}
         <Link
           href="/"
@@ -44,15 +58,15 @@ const Nav = () => {
                 href={link.path}
                 className={`relative text-[16px] font-semibold transition-colors duration-200 h-full flex items-center ${
                   isActive
-                    ? "text-[#005B84]"
-                    : "text-[#334155] hover:text-[#0EA5E9]"
+                    ? "text-[#005B84] dark:text-[#0EA5E9]"
+                    : "text-[#334155] dark:text-slate-300 hover:text-[#0EA5E9] dark:hover:text-[#0EA5E9]"
                 }`}
               >
                 {link.name}
                 {isActive && (
                   <motion.div
                     layoutId="activeUnderline"
-                    className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#005B84]"
+                    className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#005B84] dark:bg-[#0EA5E9]"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -61,17 +75,25 @@ const Nav = () => {
           })}
         </div>
 
-       
+        {/* Desktop Utility Controls */}
         <div className="hidden md:flex items-center gap-8">
-          {/* Sun Icon */}
-          <button className="text-[#334155] hover:text-black p-2 rounded-full transition-colors duration-150 text-[24px] flex items-center justify-center">
-            <FiSun strokeWidth={2.3} />
+          {/* Dynamic Theme Switching Action Button */}
+          <button 
+            onClick={handleThemeToggle}
+            className="text-[#334155] dark:text-slate-300 hover:text-black dark:hover:text-white p-2 rounded-full transition-colors duration-150 text-[24px] flex items-center justify-center outline-none"
+            aria-label="Toggle theme"
+          >
+            {mounted && theme === "dark" ? (
+              <FiSun strokeWidth={2.3} className="text-yellow-400" />
+            ) : (
+              <FiMoon strokeWidth={2.3} />
+            )}
           </button>
 
           {/* Login: Plain Text */}
           <Link
             href="/login"
-            className="text-[#0F172A] font-bold text-[16px] hover:text-[#006A9C] transition-colors"
+            className="text-[#0F172A] dark:text-white font-bold text-[16px] hover:text-[#006A9C] dark:hover:text-[#0EA5E9] transition-colors"
           >
             Login
           </Link>
@@ -88,19 +110,27 @@ const Nav = () => {
 
         {/* Small Devices Mobile Menu Trigger */}
         <div className="flex md:hidden items-center gap-4">
-          <button className="text-[#334155] p-2 text-xl flex items-center justify-center">
-            <FiSun strokeWidth={2.3} />
+          <button 
+            onClick={handleThemeToggle}
+            className="text-[#334155] dark:text-slate-300 p-2 text-xl flex items-center justify-center outline-none"
+            aria-label="Toggle theme"
+          >
+            {mounted && theme === "dark" ? (
+              <FiSun strokeWidth={2.3} className="text-yellow-400" />
+            ) : (
+              <FiMoon strokeWidth={2.3} />
+            )}
           </button>
           <button
             onClick={() => setIsOpen(true)}
-            className="text-gray-800 p-2 text-2xl focus:outline-none"
+            className="text-gray-800 dark:text-white p-2 text-2xl focus:outline-none"
           >
             <FiMenu />
           </button>
         </div>
       </nav>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer Overlay Sheet Layout */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -117,10 +147,10 @@ const Nav = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.25, ease: "easeInOut" }}
-              className="fixed top-0 right-0 h-full w-[290px] bg-white shadow-2xl z-50 p-6 flex flex-col justify-between md:hidden"
+              className="fixed top-0 right-0 h-full w-[290px] bg-white dark:bg-slate-900 shadow-2xl z-50 p-6 flex flex-col justify-between md:hidden"
             >
               <div>
-                <div className="flex items-center justify-between border-b pb-4 mb-6">
+                <div className="flex items-center justify-between border-b border-gray-100 dark:border-slate-800 pb-4 mb-6">
                   <div className="relative w-28 h-8">
                     <Image
                       src="/MedFlexLogo.png"
@@ -131,12 +161,13 @@ const Nav = () => {
                   </div>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="text-gray-700 p-1 text-2xl"
+                    className="text-gray-700 dark:text-slate-300 p-1 text-2xl outline-none"
                   >
                     <FiX />
                   </button>
                 </div>
 
+                {/* Mobile Route List Links Component */}
                 <div className="flex flex-col gap-4">
                   {navLinks.map((link) => {
                     const isActive = pathname === link.path;
@@ -147,8 +178,8 @@ const Nav = () => {
                         onClick={() => setIsOpen(false)}
                         className={`text-[16px] font-semibold py-2 px-3 rounded-md transition-colors ${
                           isActive
-                            ? "bg-[#F0F9FF] text-[#005B84]"
-                            : "text-[#334155] hover:bg-gray-50"
+                            ? "bg-[#F0F9FF] dark:bg-slate-800 text-[#005B84] dark:text-[#0EA5E9]"
+                            : "text-[#334155] dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800"
                         }`}
                       >
                         {link.name}
@@ -158,22 +189,25 @@ const Nav = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-6 border-t border-gray-100 pt-5 w-full bg-white select-none">
-                {/* Login Button: Pure Figma Plain Text / Link Style */}
-                <button
-                  type="button"
-                  className="flex-1 h-12 text-[#0F172A] font-bold text-[16px] flex items-center justify-center bg-transparent transition-colors hover:text-[#006A9C] active:opacity-80 outline-none"
+              {/* Mobile Drawer Action Dynamic Navigation Footer Grid */}
+              <div className="flex items-center gap-6 border-t border-gray-100 dark:border-slate-800 pt-5 w-full bg-white dark:bg-slate-900 select-none">
+                {/* Login Button */}
+                <Link
+                  href="/login"
+                  onClick={() => setIsOpen(false)}
+                  className="flex-1 h-12 text-[#0F172A] dark:text-white font-bold text-[16px] flex items-center justify-center bg-transparent transition-colors hover:text-[#006A9C] active:opacity-80 outline-none text-center"
                 >
                   Login
-                </button>
+                </Link>
 
-                {/* Register Button: Pure Figma Solid Teal with Smooth Shadow */}
-                <button
-                  type="button"
-                  className="flex-1 h-12 bg-[#006A9C] text-white font-bold text-[16px] rounded-[10px] flex items-center justify-center shadow-[0_4px_12px_rgba(0,106,156,0.15)] transition-colors hover:bg-[#005B84] active:bg-[#004C70] outline-none"
+                {/* Register Button */}
+                <Link
+                  href="/register"
+                  onClick={() => setIsOpen(false)}
+                  className="flex-1 h-12 bg-[#006A9C] text-white font-bold text-[16px] rounded-[10px] flex items-center justify-center shadow-[0_4px_12px_rgba(0,106,156,0.15)] transition-colors hover:bg-[#005B84] active:bg-[#004C70] outline-none text-center"
                 >
                   Register
-                </button>
+                </Link>
               </div>
             </motion.div>
           </>
