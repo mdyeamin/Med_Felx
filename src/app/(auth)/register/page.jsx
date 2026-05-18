@@ -29,6 +29,7 @@ import { useTheme } from "next-themes";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { RegisterAction, RegisterSubmit } from "@/app/lib/action";
 const Register = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -41,12 +42,8 @@ const Register = () => {
   const handleThemeToggle = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z0-9a-z@$!%*?&]{8,}$/;
 
-const handleRegister = ()=>{
-  
-}
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#_\-.])[A-Z0-9a-z@$!%*?&#_\-.]{8,}$/;
 
   return (
     <main
@@ -137,7 +134,11 @@ const handleRegister = ()=>{
           transition={{ duration: 0.35, ease: "easeOut" }}
           className="w-full max-w-[440px] bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-100 dark:border-slate-800/50 shadow-[0_15px_50px_rgba(0,0,0,0.03)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.3)] p-6 sm:p-8 transition-all duration-300"
         >
-          <Form className="w-full space-y-5" validationBehavior="native">
+          <Form
+            onSubmit={(e) => RegisterSubmit(e)}
+            className="w-full space-y-5"
+            validationBehavior="native"
+          >
             <Fieldset className="w-full space-y-4">
               <div className="space-y-1 mb-0">
                 <Fieldset.Legend className="text-[26px] font-extrabold tracking-tight text-slate-900 dark:text-slate-100 uppercase leading-none">
@@ -246,7 +247,7 @@ const handleRegister = ()=>{
                   isRequired
                   validate={(value) => {
                     if (!passwordRegex.test(value)) {
-                      return "Password needs minimum 8 characters, 1 uppercase, and 1 special character";
+                      return "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.";
                     }
                     return null;
                   }}
