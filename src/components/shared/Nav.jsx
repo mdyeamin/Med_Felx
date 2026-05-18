@@ -10,15 +10,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import { authClient } from "@/app/lib/auth-client";
 
+import ProfileModal from "../ProfileModal";
+
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-const { data, isPending } = authClient.useSession();
-const user = data?.user
-console.log(user);
-
+  const { data, isPending } = authClient.useSession();
+  const user = data?.user;
+  console.log(user);
 
   // Hydration state sync mismatch pipeline error handle korar jonno hook setup
   useEffect(() => {
@@ -81,40 +82,60 @@ console.log(user);
         </div>
 
         {/* Desktop Utility Controls */}
-        <div className="hidden md:flex items-center gap-8">
-          {/* Dynamic Theme Switching Action Button */}
-          <button
-            onClick={handleThemeToggle}
-            className="text-[#334155] dark:text-slate-300 hover:text-black dark:hover:text-white p-2 rounded-full transition-colors duration-150 text-[24px] flex items-center justify-center outline-none"
-            aria-label="Toggle theme"
-          >
-            {mounted && theme === "dark" ? (
-              <FiSun strokeWidth={2.3} className="text-yellow-400" />
-            ) : (
-              <FiMoon strokeWidth={2.3} />
-            )}
-          </button>
+        {user ? (
+          <div className="hidden md:flex items-center gap-8">
+            {/* Dynamic Theme Switching Action Button */}
+            <button
+              onClick={handleThemeToggle}
+              className="text-[#334155] dark:text-slate-300 hover:text-black dark:hover:text-white p-2 rounded-full transition-colors duration-150 text-[24px] flex items-center justify-center outline-none"
+              aria-label="Toggle theme"
+            >
+              {mounted && theme === "dark" ? (
+                <FiSun strokeWidth={2.3} className="text-yellow-400" />
+              ) : (
+                <FiMoon strokeWidth={2.3} />
+              )}
+            </button>
 
-          {/* Login: Plain Text */}
-          {/* Login Button */}
-          <Link
-            href="/login"
-            className="text-slate-900 dark:text-slate-100 font-bold text-[16px] px-6 h-10 rounded-[10px]  border-2 border-[#0EA5E9]  min-w-[110px] flex items-center justify-center transition-all whitespace-nowrap
+            <ProfileModal session={user} />
+          </div>
+        ) : (
+          <div className="hidden md:flex items-center gap-8">
+            {/* Dynamic Theme Switching Action Button */}
+            <button
+              onClick={handleThemeToggle}
+              className="text-[#334155] dark:text-slate-300 hover:text-black dark:hover:text-white p-2 rounded-full transition-colors duration-150 text-[24px] flex items-center justify-center outline-none"
+              aria-label="Toggle theme"
+            >
+              {mounted && theme === "dark" ? (
+                <FiSun strokeWidth={2.3} className="text-yellow-400" />
+              ) : (
+                <FiMoon strokeWidth={2.3} />
+              )}
+            </button>
+
+            {/* Login: Plain Text */}
+            {/* Login Button */}
+            <Link
+              href="/login"
+              className="text-slate-900 dark:text-slate-100 font-bold text-[16px] px-6 h-10 rounded-[10px]  border-2 border-[#0EA5E9]  min-w-[110px] flex items-center justify-center transition-all whitespace-nowrap
             "
-          >
-            Login
-          </Link>
+            >
+              Login
+            </Link>
 
-          <Link
-            href="/register"
-            className="bg-[#006A9C] dark:bg-[#0EA5E9] text-white dark:text-slate-900 font-bold text-[16px] px-6 h-10 rounded-[10px] shadow-[0_4px_12px_rgba(0,106,156,0.15)] dark:shadow-[0_4px_12px_rgba(14,165,233,0.2)] hover:bg-[#005B84] dark:hover:bg-[#38bdf8] min-w-[110px] flex items-center justify-center transition-all whitespace-nowrap"
-          >
-            Register
-          </Link>
-        </div>
+            <Link
+              href="/register"
+              className="bg-[#006A9C] dark:bg-[#0EA5E9] text-white dark:text-slate-900 font-bold text-[16px] px-6 h-10 rounded-[10px] shadow-[0_4px_12px_rgba(0,106,156,0.15)] dark:shadow-[0_4px_12px_rgba(14,165,233,0.2)] hover:bg-[#005B84] dark:hover:bg-[#38bdf8] min-w-[110px] flex items-center justify-center transition-all whitespace-nowrap"
+            >
+              Register
+            </Link>
+          </div>
+        )}
 
         {/* Small Devices Mobile Menu Trigger */}
         <div className="flex md:hidden items-center gap-4">
+          {user && <ProfileModal session={user}/>}
           <button
             onClick={handleThemeToggle}
             className="text-[#334155] dark:text-slate-300 p-2 text-xl flex items-center justify-center outline-none"
@@ -196,8 +217,8 @@ console.log(user);
 
               {/* Mobile Drawer Action Dynamic Footer Grid */}
               <div className="w-full  border-t border-gray-100 dark:border-slate-800/60 pt-5 pb-2 select-none transition-colors duration-300">
-                {/* flex-nowrap এবং grid-cols-2 নিশ্চিত করবে ২টি বাটন পাশাপাশি সমান জায়গা নিবে */}
-                <div className="grid grid-cols-2 gap-3 w-full items-center justify-between">
+               
+                {!user&& <div className="grid grid-cols-2 gap-3 w-full items-center justify-between">
                   {/* Login Button */}
                   <Link
                     href="/login"
@@ -213,7 +234,7 @@ console.log(user);
                   >
                     Register
                   </Link>
-                </div>
+                </div>}
               </div>
             </motion.div>
           </>

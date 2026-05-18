@@ -24,7 +24,7 @@ export const RegisterSubmit = async (e, router) => {
   }
 };
 // for login
-export const LoginSubmit = async (e,router) => {
+export const LoginSubmit = async (e, router) => {
   e.preventDefault();
   const fromData = new FormData(e.currentTarget);
   const loginUser = Object.fromEntries(fromData.entries());
@@ -39,7 +39,7 @@ export const LoginSubmit = async (e,router) => {
     }
     if (data || data?.user) {
       toast.success("Login successfully!");
-      
+
       router.push("/");
     }
   } catch (error) {
@@ -47,4 +47,11 @@ export const LoginSubmit = async (e,router) => {
   }
   console.log("data", data);
   console.log("error", error);
+};
+
+// google sign in
+export const handleGoogleSignIn = async (router) => {
+  const data = await authClient.signIn.social({
+    provider: "google",
+  });
 };

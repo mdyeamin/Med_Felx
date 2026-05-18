@@ -27,7 +27,7 @@ import { useTheme } from "next-themes";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { LoginSubmit } from "../register/action";
+import { handleGoogleSignIn, LoginSubmit } from "../register/action";
 
 const LoginPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -262,6 +262,7 @@ const LoginPage = () => {
 
             {/* গুগল বাটন (ফুল উইডথ এবং ব্র্যান্ড-সিঙ্কড কাস্টম ডিজাইন) */}
             <Button
+            onClick={handleGoogleSignIn}
               variant="bordered"
               className=" mx-auto  border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/60 font-bold text-base rounded-[10px]  transition-all flex items-center justify-center bg-transparent"
             >
