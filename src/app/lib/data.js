@@ -7,7 +7,14 @@ export const getTopDoctors = async () => {
 
 // all doctors get
 export const getAllDoctors = async () => {
-    const res = await fetch(`${process.env.SERVER_URL}/all-appointments`);
-    const data = await res.json();
-    return data;
+  const res = await fetch(`${process.env.SERVER_URL}/all-appointments`);
+  const data = await res.json();
+  return data;
+};
+
+// get single data for details page
+export const getDoctorById = async (id) => {
+  const res = await fetch(`${process.env.SERVER_URL}/all-appointments/${id}`);
+  const data = await res.json();
+  return data;
 };

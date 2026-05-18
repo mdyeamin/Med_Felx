@@ -1,6 +1,7 @@
 import AllDoctors from "@/components/AllDoctors";
 import DoctorsSkeleton from "@/components/DoctorsSkeleton";
 
+
 import React, { Suspense } from "react";
 
 const allAppointments = () => {

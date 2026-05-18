@@ -203,13 +203,7 @@ const Nav = () => {
                   </Link>
 
                   {/* Register Button */}
-                  <Link
-                    href="/register"
-                    onClick={() => setIsOpen(false)}
-                    className="w-full h-11 bg-[#006A9C] dark:bg-[#0EA5E9] text-white dark:text-slate-900 font-bold text-[15px] rounded-[10px] flex items-center justify-center shadow-[0_4px_12px_rgba(0,106,156,0.15)] dark:shadow-[0_4px_12px_rgba(14,165,233,0.2)] transition-colors hover:bg-[#005B84] dark:hover:bg-[#38bdf8] active:bg-[#004C70] outline-none text-center whitespace-nowrap"
-                  >
-                    Register
-                  </Link>
+                  
                 </div>
               </div>
             </motion.div>

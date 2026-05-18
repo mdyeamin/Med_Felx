@@ -14,7 +14,7 @@ const Footer = () => {
     { name: "Contact", path: "/contact" },
   ];
   return (
-    <footer className="w-full border-t border-gray-100 dark:border-slate-800 bg-[#F8FAFC] dark:bg-[#0b1329] transition-colors duration-300 select-none">
+    <footer className="w-full border-t border-gray-100 dark:border-slate-800 bg-[#F8FAFC] dark:bg-[#0b1329] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 md:px-14 py-8 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4">
         <div className="flex items-center relative w-32 h-10">
           <Image
