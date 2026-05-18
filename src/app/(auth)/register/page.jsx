@@ -28,6 +28,7 @@ import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 const Register = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -40,7 +41,8 @@ const Register = () => {
   const handleThemeToggle = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z0-9a-z@$!%*?&]{8,}$/;
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z0-9a-z@$!%*?&]{8,}$/;
   return (
     <main
       className={`min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 bg-[#f4f5f6] dark:bg-[#070d1e] text-slate-900 dark:text-white transition-colors duration-300 select-text relative`}
@@ -76,24 +78,14 @@ const Register = () => {
 
         {/* Brand Identity Branding */}
         <div className="relative z-10 flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-[#006A9C] flex items-center justify-center shadow-[0_4px_12px_rgba(0,106,156,0.3)]">
-            <svg
-              className="w-5 h-5 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19 10.5V20a2 2 0 01-2 2H7a2 2 0 01-2-2v-9.5m14 0V9a2 2 0 00-2-2h-3.5M19 10.5a2 2 0 01-2-2V7m-12 3.5V9a2 2 0 012-2h3.5m-5.5 3.5a2 2 0 002-2V7m0 0V4a2 2 0 012-2h4a2 2 0 012 2v3m-6 0h6"
-              />
-            </svg>
+          <div className="relative w-28 h-8">
+            <Image
+              src="/MedFlexLogo.png"
+              alt="MedFlex Logo"
+              fill
+              className="object-contain dark:invert transition-all duration-300"
+            />
           </div>
-          <span className="text-xl font-extrabold tracking-tight text-white">
-            MedFlex
-          </span>
         </div>
 
         {/* Sharp Image Typography Frame */}
