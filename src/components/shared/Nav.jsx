@@ -194,20 +194,20 @@ const Nav = () => {
                 {/* flex-nowrap এবং grid-cols-2 নিশ্চিত করবে ২টি বাটন পাশাপাশি সমান জায়গা নিবে */}
                 <div className="grid grid-cols-2 gap-3 w-full items-center justify-between">
                   {/* Login Button */}
-                   <Link
-            href="/login"
-            className="text-slate-900 dark:text-slate-100 font-bold text-[16px] px-6 h-8 rounded-[10px]  border-2 border-[#0EA5E9]  min-w-[110px] flex items-center justify-center transition-all whitespace-nowrap
+                  <Link
+                    href="/login"
+                    className="text-slate-900 dark:text-slate-100 font-bold text-[16px] px-6 h-8 rounded-[10px]  border-2 border-[#0EA5E9]  min-w-[110px] flex items-center justify-center transition-all whitespace-nowrap
             "
-          >
-            Login
-          </Link>
+                  >
+                    Login
+                  </Link>
 
-          <Link
-            href="/register"
-            className="bg-[#006A9C] dark:bg-[#0EA5E9] text-white dark:text-slate-900 font-bold text-[16px] px-6 h-8 rounded-[10px] shadow-[0_4px_12px_rgba(0,106,156,0.15)] dark:shadow-[0_4px_12px_rgba(14,165,233,0.2)] hover:bg-[#005B84] dark:hover:bg-[#38bdf8] min-w-[110px] flex items-center justify-center transition-all whitespace-nowrap"
-          >
-            Register
-          </Link>
+                  <Link
+                    href="/register"
+                    className="bg-[#006A9C] dark:bg-[#0EA5E9] text-white dark:text-slate-900 font-bold text-[16px] px-6 h-8 rounded-[10px] shadow-[0_4px_12px_rgba(0,106,156,0.15)] dark:shadow-[0_4px_12px_rgba(14,165,233,0.2)] hover:bg-[#005B84] dark:hover:bg-[#38bdf8] min-w-[110px] flex items-center justify-center transition-all whitespace-nowrap"
+                  >
+                    Register
+                  </Link>
                 </div>
               </div>
             </motion.div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   Form,
@@ -25,18 +25,27 @@ import {
 } from "react-icons/fi";
 import { FaArrowRight } from "react-icons/fa6";
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
+import { FcGoogle } from "react-icons/fc";
 const Register = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
+  const handleThemeToggle = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z0-9a-z@$!%*?&]{8,}$/;
   return (
     <main
       className={`min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 bg-[#f4f5f6] dark:bg-[#070d1e] text-slate-900 dark:text-white transition-colors duration-300 select-text relative`}
     >
-      {/* ===================== FLOATING TOP CONTROLS ===================== */}
-      {/* 🛠️ ফিক্স: বামে ছোট ব্যাক বাটন অ্যারো এবং ডানে থিম টগল বাটন */}
+     
+     
       <div className="absolute top-6 left-6 lg:left-12 z-50">
         <Link
           href="/"
@@ -47,20 +56,20 @@ const Register = () => {
       </div>
 
       <div className="absolute top-6 right-6 lg:right-12 z-50">
-        <Button
-          isIconOnly
-          onClick={() => setIsDarkMode(!isDarkMode)}
-          className="w-10 h-10 rounded-full bg-white/80 dark:bg-slate-900/80 border border-slate-200/60 dark:border-slate-800/60 text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white shadow-sm backdrop-blur-sm min-w-0 p-0 transition-all hover:scale-105 active:scale-95"
+        <button
+          onClick={handleThemeToggle}
+          className="text-[#334155] dark:text-slate-300 hover:text-black dark:hover:text-white p-2 rounded-full transition-colors duration-150 text-[24px] flex items-center justify-center outline-none"
+          aria-label="Toggle theme"
         >
-          {isDarkMode ? (
-            <FiSun className="text-lg" />
+          {mounted && theme === "dark" ? (
+            <FiSun strokeWidth={2.3} className="text-yellow-400" />
           ) : (
-            <FiMoon className="text-lg" />
+            <FiMoon strokeWidth={2.3} />
           )}
-        </Button>
+        </button>
       </div>
 
-      {/* ===================== LEFT PANEL: LUXURY DEEP BLUE GRADIENT ===================== */}
+      {/* LEFT PANEL: LUXURY DEEP  */}
       <div className="relative hidden lg:flex flex-col justify-between p-16 bg-gradient-to-br from-[#062143] via-[#030e1d] to-[#01050b] overflow-hidden">
         {/* Ambient Subtle Mesh Glows */}
         <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[100px] pointer-events-none" />
@@ -124,31 +133,32 @@ const Register = () => {
         </div>
       </div>
 
-      {/* ===================== RIGHT PANEL: THE FLOATING CARD FRAME ===================== */}
-      <div className="w-full flex items-center justify-center p-4 sm:p-8 lg:p-16 relative overflow-y-auto">
+      {/*  RIGHT PANEL: THE FLOATING CARD FRAME  */}
+      <div className="w-full flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-y-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className="w-full max-w-[440px] bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-100 dark:border-slate-800/50 shadow-[0_15px_50px_rgba(0,0,0,0.03)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.3)] p-6 sm:p-10 transition-all duration-300"
+          className="w-full max-w-[440px] bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-100 dark:border-slate-800/50 shadow-[0_15px_50px_rgba(0,0,0,0.03)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.3)] p-6 sm:p-8 transition-all duration-300"
         >
           <Form
-            className="w-full space-y-6"
+            className="w-full space-y-5"
             validationBehavior="native"
             onSubmit={(e) => e.preventDefault()}
           >
-            <Fieldset className="w-full space-y-5">
-              <div className="space-y-1.5">
-                <Fieldset.Legend className="text-[26px] font-extrabold tracking-tight text-slate-900 dark:text-white uppercase leading-none">
+            <Fieldset className="w-full space-y-4">
+             
+              <div className="space-y-1 mb-0">
+                <Fieldset.Legend className="text-[26px] font-extrabold tracking-tight text-slate-900 dark:text-slate-100 uppercase leading-none">
                   Create Account
                 </Fieldset.Legend>
-                <Description className="text-xs font-semibold text-slate-400 dark:text-slate-500 tracking-wide block">
+                <Description className="text-xs font-semibold text-slate-400 dark:text-slate-600 tracking-wide block">
                   Join thousands of healthcare providers worldwide.
                 </Description>
               </div>
 
               {/* Input Layout Container */}
-              <div className="space-y-4 w-full pt-2">
+              <div className="space-y-3.5 w-full pt-1 mb-0">
                 {/* 1. FULL NAME FIELD */}
                 <TextField
                   className="w-full"
@@ -162,22 +172,22 @@ const Register = () => {
                     return null;
                   }}
                 >
-                  <Label className="text-[10px] font-extrabold text-slate-500 dark:text-slate-400 tracking-widest uppercase">
-                    Full Name
+                  <Label className="text-[10px] font-extrabold text-slate-800 dark:text-slate-200 tracking-widest uppercase mb-1 block">
+                   Name
                   </Label>
-                  <InputGroup className="group transition-all border-slate-200/80 dark:border-slate-800/80 focus-within:border-[#006A9C] dark:focus-within:border-[#0EA5E9] focus-within:ring-1 focus-within:ring-[#006A9C] dark:focus-within:ring-[#0EA5E9] rounded-lg overflow-hidden mt-1 bg-slate-50 dark:bg-slate-900/50">
+                  <InputGroup className="group transition-all border border-slate-200/80 dark:border-slate-800/80 focus-within:border-[#006A9C] dark:focus-within:border-[#0EA5E9] focus-within:ring-1 focus-within:ring-[#006A9C] dark:focus-within:ring-[#0EA5E9] rounded-lg overflow-hidden bg-[#eef2f6] dark:bg-slate-900/50">
                     <InputGroup.Prefix className="pl-3.5 text-slate-400 group-focus-within:text-[#006A9C] dark:group-focus-within:text-[#0EA5E9] transition-colors">
                       <FiUser className="size-4" />
                     </InputGroup.Prefix>
                     <InputGroup.Input
-                      className="bg-transparent text-[13px] font-semibold text-slate-800 dark:text-slate-100 placeholder:text-slate-400/80 py-3.5 pl-2.5 w-full outline-none"
-                      placeholder="Dr. Julian Casablancas"
+                      className="bg-transparent text-[13px] font-semibold text-slate-800 dark:text-slate-200 placeholder:text-slate-400  w-full outline-none"
+                      placeholder="Julian Casablancas"
                     />
                   </InputGroup>
                   <FieldError className="text-xs font-semibold text-rose-500 mt-1 pl-1" />
                 </TextField>
 
-                {/* 2. EMAIL ADDRESS FIELD */}
+                {/* 2. EMAIL  */}
                 <TextField
                   className="w-full"
                   name="email"
@@ -192,15 +202,15 @@ const Register = () => {
                     return null;
                   }}
                 >
-                  <Label className="text-[10px] font-extrabold text-slate-500 dark:text-slate-400 tracking-widest uppercase">
-                    Email Address
+                  <Label className="text-[10px] font-extrabold text-slate-800 dark:text-slate-200 tracking-widest uppercase mb-1 block">
+                    Email 
                   </Label>
-                  <InputGroup className="group transition-all border-slate-200/80 dark:border-slate-800/80 focus-within:border-[#006A9C] dark:focus-within:border-[#0EA5E9] focus-within:ring-1 focus-within:ring-[#006A9C] dark:focus-within:ring-[#0EA5E9] rounded-lg overflow-hidden mt-1 bg-slate-50 dark:bg-slate-900/50">
+                  <InputGroup className="group transition-all border border-slate-200/80 dark:border-slate-800/80 focus-within:border-[#006A9C] dark:focus-within:border-[#0EA5E9] focus-within:ring-1 focus-within:ring-[#006A9C] dark:focus-within:ring-[#0EA5E9] rounded-lg overflow-hidden bg-[#eef2f6] dark:bg-slate-900/50">
                     <InputGroup.Prefix className="pl-3.5 text-slate-400 group-focus-within:text-[#006A9C] dark:group-focus-within:text-[#0EA5E9] transition-colors">
                       <FiMail className="size-4" />
                     </InputGroup.Prefix>
                     <InputGroup.Input
-                      className="bg-transparent text-[13px] font-semibold text-slate-800 dark:text-slate-100 placeholder:text-slate-400/80 py-3.5 pl-2.5 w-full outline-none"
+                      className="bg-transparent text-[13px] font-semibold text-slate-800 dark:text-slate-200 placeholder:text-slate-400  w-full outline-none"
                       placeholder="julian@medflex.pro"
                     />
                   </InputGroup>
@@ -223,15 +233,15 @@ const Register = () => {
                     return null;
                   }}
                 >
-                  <Label className="text-[10px] font-extrabold text-slate-500 dark:text-slate-400 tracking-widest uppercase">
-                    Profile Photo URL
+                  <Label className="text-[10px] font-extrabold text-slate-800 dark:text-slate-200 tracking-widest uppercase mb-1 block">
+                    Profile URL
                   </Label>
-                  <InputGroup className="group transition-all border-slate-200/80 dark:border-slate-800/80 focus-within:border-[#006A9C] dark:focus-within:border-[#0EA5E9] focus-within:ring-1 focus-within:ring-[#006A9C] dark:focus-within:ring-[#0EA5E9] rounded-lg overflow-hidden mt-1 bg-slate-50 dark:bg-slate-900/50">
+                  <InputGroup className="group transition-all border border-slate-200/80 dark:border-slate-800/80 focus-within:border-[#006A9C] dark:focus-within:border-[#0EA5E9] focus-within:ring-1 focus-within:ring-[#006A9C] dark:focus-within:ring-[#0EA5E9] rounded-lg overflow-hidden bg-[#eef2f6] dark:bg-slate-900/50">
                     <InputGroup.Prefix className="pl-3.5 text-slate-400 group-focus-within:text-[#006A9C] dark:group-focus-within:text-[#0EA5E9] transition-colors">
                       <FiImage className="size-4" />
                     </InputGroup.Prefix>
                     <InputGroup.Input
-                      className="bg-transparent text-[13px] font-semibold text-slate-800 dark:text-slate-100 placeholder:text-slate-400/80 py-3.5 pl-2.5 w-full outline-none"
+                      className="bg-transparent text-[13px] font-semibold text-slate-800 dark:text-slate-200 placeholder:text-slate-400  w-full outline-none"
                       placeholder="https://image-placeholder.com/avatar.jpg"
                     />
                   </InputGroup>
@@ -250,17 +260,17 @@ const Register = () => {
                     return null;
                   }}
                 >
-                  <Label className="text-[10px] font-extrabold text-slate-500 dark:text-slate-400 tracking-widest uppercase">
+                  <Label className="text-[10px] font-extrabold text-slate-800 dark:text-slate-200 tracking-widest uppercase mb-1 block">
                     Password
                   </Label>
-                  <InputGroup className="group transition-all border-slate-200/80 dark:border-slate-800/80 focus-within:border-[#006A9C] dark:focus-within:border-[#0EA5E9] focus-within:ring-1 focus-within:ring-[#006A9C] dark:focus-within:ring-[#0EA5E9] rounded-lg overflow-hidden mt-1 bg-slate-50 dark:bg-slate-900/50">
+                  <InputGroup className="group transition-all border border-slate-200/80 dark:border-slate-800/80 focus-within:border-[#006A9C] dark:focus-within:border-[#0EA5E9] focus-within:ring-1 focus-within:ring-[#006A9C] dark:focus-within:ring-[#0EA5E9] rounded-lg overflow-hidden bg-[#eef2f6] dark:bg-slate-900/50">
                     <InputGroup.Prefix className="pl-3.5 text-slate-400 group-focus-within:text-[#006A9C] dark:group-focus-within:text-[#0EA5E9] transition-colors">
                       <FiLock className="size-4" />
                     </InputGroup.Prefix>
                     <InputGroup.Input
-                      className="bg-transparent text-[13px] font-semibold text-slate-800 dark:text-slate-100 py-3.5 pl-2.5 w-full outline-none"
+                      className="bg-transparent text-[13px] font-semibold text-slate-800 dark:text-slate-200 placeholder:text-slate-400  w-full outline-none"
                       type={isVisible ? "text" : "password"}
-                      placeholder="••••••••••••"
+                      placeholder="Password"
                     />
                     <InputGroup.Suffix className="pr-2.5">
                       <Button
@@ -286,17 +296,17 @@ const Register = () => {
               </div>
 
               {/* MAIN PRIMARY SUBMIT ACTION BUTTON */}
-              <div className="pt-4 w-full space-y-5">
+              <div className="pt-2 w-full space-y-4">
                 <Button
                   type="submit"
-                  className="w-full h-12 bg-[#006A9C] dark:bg-[#0EA5E9] text-white dark:text-slate-950 font-bold text-sm rounded-lg shadow-[0_4px_14px_rgba(0,106,156,0.2)] dark:shadow-[0_4px_14px_rgba(14,165,233,0.25)] transition-all duration-200 hover:bg-[#005B84] dark:hover:bg-[#38bdf8] flex items-center justify-center gap-2 uppercase tracking-wider"
+                  className="w-full h-10 bg-[#006A9C] dark:bg-[#0EA5E9] text-white font-bold text-sm rounded-[10px] shadow-[0_4px_14px_rgba(0,106,156,0.15)] dark:shadow-[0_4px_14px_rgba(14,165,233,0.2)] transition-all duration-200 hover:bg-[#005B84] dark:hover:bg-[#38bdf8] flex items-center justify-center gap-2 uppercase tracking-wider"
                 >
                   <span>Register Now</span>
                   <FaArrowRight className="text-xs" />
                 </Button>
 
                 {/* Form Path Switching */}
-                <div className="text-center text-xs font-bold text-slate-400 tracking-wide">
+                <div className="text-center text-xs font-bold text-slate-800 dark:text-slate-200 tracking-wide">
                   Already have an account?{" "}
                   <Link
                     href="/login"
@@ -306,8 +316,28 @@ const Register = () => {
                   </Link>
                 </div>
 
+                {/* Divider Line */}
+                <div className="flex items-center py-0 mb-0">
+                  <div className="flex-grow border-t border-slate-100 dark:border-slate-800/80" />
+                  <span className="px-3 text-[13px] font-black text-slate-800 dark:text-slate-200 uppercase tracking-widest">
+                    OR
+                  </span>
+                  <div className="flex-grow border-t border-slate-100 dark:border-slate-800/80" />
+                </div>
+
+                {/* 🛠️ মডার্ন কাস্টমাইজড গুগল বাটন (ওয়েবসাইটের রেজিস্টার বাটনের সাথে মিল রেখে ১০px রাউন্ডেড করা) */}
+                <Button
+                  variant="bordered"
+                  className=" mx-auto  border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/60 font-bold text-base rounded-[10px]  transition-all flex items-center justify-center bg-transparent"
+                >
+                  <FcGoogle  className="shrink-0 " />
+                  <span className=" tracking-wider ">
+                    Google
+                  </span>
+                </Button>
+
                 {/* Minimal Secure Badge Footer info */}
-                <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold text-slate-300 dark:text-slate-600 uppercase tracking-widest pt-2">
+                <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold text-slate-800 dark:text-slate-200 uppercase tracking-widest pt-1">
                   <div className="w-4 h-px bg-slate-200 dark:bg-slate-800" />
                   <span>Secure Verification</span>
                   <div className="w-4 h-px bg-slate-200 dark:bg-slate-800" />
