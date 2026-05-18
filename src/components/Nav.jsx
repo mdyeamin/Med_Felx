@@ -43,7 +43,7 @@ const Nav = () => {
             src="/MedFlexLogo.png"
             alt="MedFlex Logo"
             fill
-            className="object-contain"
+            className="object-contain dark:invert transition-all duration-300"
             priority
           />
         </Link>
@@ -59,7 +59,7 @@ const Nav = () => {
                 className={`relative text-[16px] font-semibold transition-colors duration-200 h-full flex items-center ${
                   isActive
                     ? "text-[#005B84] dark:text-[#0EA5E9]"
-                    : "text-[#334155] dark:text-slate-300 hover:text-[#0EA5E9] dark:hover:text-[#0EA5E9]"
+                    : "text-[#334155] dark:text-slate-300 hover:text-[#0ea5e9] dark:hover:text-[#0EA5E9]"
                 }`}
               >
                 {link.name}
@@ -78,7 +78,7 @@ const Nav = () => {
         {/* Desktop Utility Controls */}
         <div className="hidden md:flex items-center gap-8">
           {/* Dynamic Theme Switching Action Button */}
-          <button 
+          <button
             onClick={handleThemeToggle}
             className="text-[#334155] dark:text-slate-300 hover:text-black dark:hover:text-white p-2 rounded-full transition-colors duration-150 text-[24px] flex items-center justify-center outline-none"
             aria-label="Toggle theme"
@@ -102,7 +102,7 @@ const Nav = () => {
           <Button
             as={Link}
             href="/register"
-            className="bg-[#006A9C] text-white font-bold px-6 h-11 rounded-[10px] shadow-[0_4px_12px_rgba(0,106,156,0.15)] hover:bg-[#005B84] text-[16px] min-w-[110px]"
+            className="bg-[#006A9C] text-white dark:text-slate-900 font-bold px-6 h-11 rounded-[10px] shadow-[0_4px_12px_rgba(0,106,156,0.15)] dark:bg-[#0EA5E9] hover:bg-[#005B84] dark:hover:bg-[#38bdf8] text-[16px] min-w-[110px] transition-all"
           >
             Register
           </Button>
@@ -110,7 +110,7 @@ const Nav = () => {
 
         {/* Small Devices Mobile Menu Trigger */}
         <div className="flex md:hidden items-center gap-4">
-          <button 
+          <button
             onClick={handleThemeToggle}
             className="text-[#334155] dark:text-slate-300 p-2 text-xl flex items-center justify-center outline-none"
             aria-label="Toggle theme"
@@ -147,7 +147,7 @@ const Nav = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.25, ease: "easeInOut" }}
-              className="fixed top-0 right-0 h-full w-[290px] bg-white dark:bg-slate-900 shadow-2xl z-50 p-6 flex flex-col justify-between md:hidden"
+              className="fixed top-0 right-0 h-full w-[290px] bg-white dark:bg-slate-900 shadow-2xl z-50 p-6 flex flex-col justify-between md:hidden transition-colors duration-300"
             >
               <div>
                 <div className="flex items-center justify-between border-b border-gray-100 dark:border-slate-800 pb-4 mb-6">
@@ -156,7 +156,7 @@ const Nav = () => {
                       src="/MedFlexLogo.png"
                       alt="MedFlex Logo"
                       fill
-                      className="object-contain"
+                      className="object-contain dark:invert transition-all duration-300"
                     />
                   </div>
                   <button
@@ -176,10 +176,10 @@ const Nav = () => {
                         key={link.path}
                         href={link.path}
                         onClick={() => setIsOpen(false)}
-                        className={`text-[16px] font-semibold py-2 px-3 rounded-md transition-colors ${
+                        className={`text-[16px] font-semibold py-2 px-3 rounded-md transition-all ${
                           isActive
                             ? "bg-[#F0F9FF] dark:bg-slate-800 text-[#005B84] dark:text-[#0EA5E9]"
-                            : "text-[#334155] dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800"
+                            : "text-[#334155] dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800/50"
                         }`}
                       >
                         {link.name}
@@ -189,25 +189,28 @@ const Nav = () => {
                 </div>
               </div>
 
-              {/* Mobile Drawer Action Dynamic Navigation Footer Grid */}
-              <div className="flex items-center gap-6 border-t border-gray-100 dark:border-slate-800 pt-5 w-full bg-white dark:bg-slate-900 select-none">
-                {/* Login Button */}
-                <Link
-                  href="/login"
-                  onClick={() => setIsOpen(false)}
-                  className="flex-1 h-12 text-[#0F172A] dark:text-white font-bold text-[16px] flex items-center justify-center bg-transparent transition-colors hover:text-[#006A9C] active:opacity-80 outline-none text-center"
-                >
-                  Login
-                </Link>
+              {/* Mobile Drawer Action Dynamic Footer Grid */}
+              <div className="w-full  border-t border-gray-100 dark:border-slate-800/60 pt-5 pb-2 select-none transition-colors duration-300">
+                {/* flex-nowrap এবং grid-cols-2 নিশ্চিত করবে ২টি বাটন পাশাপাশি সমান জায়গা নিবে */}
+                <div className="grid grid-cols-2 gap-3 w-full items-center justify-between">
+                  {/* Login Button */}
+                  <Link
+                    href="/login"
+                    onClick={() => setIsOpen(false)}
+                    className="w-full h-12 text-[#0F172A] dark:text-slate-200 font-bold text-[15px] flex items-center justify-center bg-transparent transition-colors hover:text-[#006A9C] dark:hover:text-[#0EA5E9] active:opacity-80 outline-none text-center border border-transparent"
+                  >
+                    Login
+                  </Link>
 
-                {/* Register Button */}
-                <Link
-                  href="/register"
-                  onClick={() => setIsOpen(false)}
-                  className="flex-1 h-12 bg-[#006A9C] text-white font-bold text-[16px] rounded-[10px] flex items-center justify-center shadow-[0_4px_12px_rgba(0,106,156,0.15)] transition-colors hover:bg-[#005B84] active:bg-[#004C70] outline-none text-center"
-                >
-                  Register
-                </Link>
+                  {/* Register Button */}
+                  <Link
+                    href="/register"
+                    onClick={() => setIsOpen(false)}
+                    className="w-full h-11 bg-[#006A9C] dark:bg-[#0EA5E9] text-white dark:text-slate-900 font-bold text-[15px] rounded-[10px] flex items-center justify-center shadow-[0_4px_12px_rgba(0,106,156,0.15)] dark:shadow-[0_4px_12px_rgba(14,165,233,0.2)] transition-colors hover:bg-[#005B84] dark:hover:bg-[#38bdf8] active:bg-[#004C70] outline-none text-center whitespace-nowrap"
+                  >
+                    Register
+                  </Link>
+                </div>
               </div>
             </motion.div>
           </>
