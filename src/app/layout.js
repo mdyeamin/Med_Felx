@@ -2,10 +2,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import { Providers } from "./providers";
-import Nav from "@/components/shared/Nav";
-import Footer from "@/components/shared/Footer";
-
-
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,11 +29,7 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full bg-white dark:bg-slate-950 text-[#0F172A] dark:text-slate-50 flex flex-col transition-colors duration-300">
         <Providers>
-          <Nav />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer/>
+          <main className="flex-grow">{children}</main>
         </Providers>
       </body>
     </html>
