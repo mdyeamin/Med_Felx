@@ -4,16 +4,21 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button } from "@heroui/react";
+
 import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
+import { authClient } from "@/app/lib/auth-client";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+const { data, isPending } = authClient.useSession();
+const user = data?.user
+console.log(user);
+
 
   // Hydration state sync mismatch pipeline error handle korar jonno hook setup
   useEffect(() => {

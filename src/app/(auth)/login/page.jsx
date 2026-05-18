@@ -27,6 +27,8 @@ import { useTheme } from "next-themes";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { LoginSubmit } from "../register/action";
+
 const LoginPage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -41,8 +43,8 @@ const LoginPage = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z0-9a-z@$!%*?&]{8,}$/;
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#_\-.])[A-Z0-9a-z@$!%*?&#_\-.]{8,}$/;
   return (
     <main
       className={`min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 bg-[#f4f5f6] dark:bg-[#070d1e] text-slate-900 dark:text-white transition-colors duration-300 select-text relative`}
@@ -80,15 +82,15 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z0-9a-z@
 
         {/* Brand Identity Branding */}
         <div className="relative z-10 flex items-center gap-2.5">
-                  <div className="relative w-28 h-8">
-                    <Image
-                      src="/MedFlexLogo.png"
-                      alt="MedFlex Logo"
-                      fill
-                      className="object-contain dark:invert transition-all duration-300"
-                    />
-                  </div>
-                </div>
+          <div className="relative w-28 h-8">
+            <Image
+              src="/MedFlexLogo.png"
+              alt="MedFlex Logo"
+              fill
+              className="object-contain dark:invert transition-all duration-300"
+            />
+          </div>
+        </div>
 
         {/* 🛠️ আপডেটেড আই-ক্যাচিং টাইপোগ্রাফি মেসেজ */}
         <div className="relative z-10 max-w-lg space-y-6 my-auto">
@@ -137,7 +139,7 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z0-9a-z@
           <Form
             className="w-full space-y-5"
             validationBehavior="native"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={(e)=>LoginSubmit(e,router)}
           >
             <Fieldset className="w-full space-y-4">
               <div className="space-y-1 mb-0">
@@ -188,7 +190,7 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z0-9a-z@
                   isRequired
                   validate={(value) => {
                     if (!passwordRegex.test(value)) {
-                      return "Password needs minimum 8 uppercase letters, 8 numbers, 1 lowercase, and 1 special character";
+                      return "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.";
                     }
                     return null;
                   }}
@@ -227,55 +229,53 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z0-9a-z@
                   <FieldError className="text-xs font-semibold text-rose-500 mt-1 pl-1" />
                 </TextField>
               </div>
-
+              <Button
+                type="submit"
+                className="w-full h-11 bg-[#006A9C] dark:bg-[#0EA5E9] text-white dark:text-slate-950 font-bold text-sm rounded-[10px] shadow-[0_4px_14px_rgba(0,106,156,0.15)] dark:shadow-[0_4px_14px_rgba(14,165,233,0.2)] transition-all duration-200 hover:bg-[#005B84] dark:hover:bg-[#38bdf8] flex items-center justify-center gap-2 uppercase tracking-wider"
+              >
+                <span>Sign In</span>
+                <FaArrowRight className="text-xs" />
+              </Button>
               {/* MAIN PRIMARY SUBMIT ACTION BUTTON */}
-              <div className="pt-2 w-full space-y-4">
-                <Button
-                  type="submit"
-                  className="w-full h-11 bg-[#006A9C] dark:bg-[#0EA5E9] text-white dark:text-slate-950 font-bold text-sm rounded-[10px] shadow-[0_4px_14px_rgba(0,106,156,0.15)] dark:shadow-[0_4px_14px_rgba(14,165,233,0.2)] transition-all duration-200 hover:bg-[#005B84] dark:hover:bg-[#38bdf8] flex items-center justify-center gap-2 uppercase tracking-wider"
-                >
-                  <span>Sign In</span>
-                  <FaArrowRight className="text-xs" />
-                </Button>
-
-                {/* Form Path Switching */}
-                <div className="text-center text-xs font-bold text-slate-800 dark:text-slate-200 tracking-wide">
-                  Don't have an account?{" "}
-                  <Link
-                    href="/register"
-                    className="text-[#006A9C] dark:text-[#0EA5E9] hover:underline ml-0.5"
-                  >
-                    Register
-                  </Link>
-                </div>
-
-                {/* Divider Line */}
-                <div className="flex items-center py-1 mb-0">
-                  <div className="flex-grow border-t border-slate-100 dark:border-slate-800/60" />
-                  <span className="px-3 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
-                    OR
-                  </span>
-                  <div className="flex-grow border-t border-slate-100 dark:border-slate-800/60" />
-                </div>
-
-                {/* গুগল বাটন (ফুল উইডথ এবং ব্র্যান্ড-সিঙ্কড কাস্টম ডিজাইন) */}
-                <Button
-                  variant="bordered"
-                  className=" mx-auto  border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/60 font-bold text-base rounded-[10px]  transition-all flex items-center justify-center bg-transparent"
-                >
-                  <FcGoogle className="shrink-0 " />
-                  <span className=" tracking-wider ">Google</span>
-                </Button>
-
-                {/* Minimal Secure Badge Footer info */}
-                <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold text-slate-800 dark:text-slate-200 uppercase tracking-widest pt-1">
-                  <div className="w-4 h-px bg-slate-200 dark:bg-slate-800" />
-                  <span>Secure Verification</span>
-                  <div className="w-4 h-px bg-slate-200 dark:bg-slate-800" />
-                </div>
-              </div>
             </Fieldset>
           </Form>
+          <div className="pt-2 w-full space-y-4">
+            {/* Form Path Switching */}
+            <div className="text-center text-xs font-bold text-slate-800 dark:text-slate-200 tracking-wide">
+              Don't have an account?{" "}
+              <Link
+                href="/register"
+                className="text-[#006A9C] dark:text-[#0EA5E9] hover:underline ml-0.5"
+              >
+                Register
+              </Link>
+            </div>
+
+            {/* Divider Line */}
+            <div className="flex items-center py-1 mb-0">
+              <div className="flex-grow border-t border-slate-100 dark:border-slate-800/60" />
+              <span className="px-3 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                OR
+              </span>
+              <div className="flex-grow border-t border-slate-100 dark:border-slate-800/60" />
+            </div>
+
+            {/* গুগল বাটন (ফুল উইডথ এবং ব্র্যান্ড-সিঙ্কড কাস্টম ডিজাইন) */}
+            <Button
+              variant="bordered"
+              className=" mx-auto  border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/60 font-bold text-base rounded-[10px]  transition-all flex items-center justify-center bg-transparent"
+            >
+              <FcGoogle className="shrink-0 " />
+              <span className=" tracking-wider ">Google</span>
+            </Button>
+
+            {/* Minimal Secure Badge Footer info */}
+            <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold text-slate-800 dark:text-slate-200 uppercase tracking-widest pt-1">
+              <div className="w-4 h-px bg-slate-200 dark:bg-slate-800" />
+              <span>Secure Verification</span>
+              <div className="w-4 h-px bg-slate-200 dark:bg-slate-800" />
+            </div>
+          </div>
         </motion.div>
       </div>
     </main>

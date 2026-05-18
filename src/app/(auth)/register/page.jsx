@@ -29,7 +29,8 @@ import { useTheme } from "next-themes";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { RegisterAction, RegisterSubmit } from "@/app/lib/action";
+import { RegisterSubmit } from "./action";
+
 const Register = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -135,7 +136,7 @@ const Register = () => {
           className="w-full max-w-[440px] bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-100 dark:border-slate-800/50 shadow-[0_15px_50px_rgba(0,0,0,0.03)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.3)] p-6 sm:p-8 transition-all duration-300"
         >
           <Form
-            onSubmit={(e) => RegisterSubmit(e)}
+            onSubmit={(e) => RegisterSubmit(e,router)}
             className="w-full space-y-5"
             validationBehavior="native"
           >
