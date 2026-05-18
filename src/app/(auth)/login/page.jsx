@@ -40,8 +40,8 @@ const LoginPage = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z0-9a-z@$!%*?&]{8,}$/;
+  
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z0-9a-z@$!%*?&]{8,}$/;
   return (
     <main
       className={`min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 bg-[#f4f5f6] dark:bg-[#070d1e] text-slate-900 dark:text-white transition-colors duration-300 select-text relative`}
@@ -197,7 +197,7 @@ const LoginPage = () => {
                   isRequired
                   validate={(value) => {
                     if (!passwordRegex.test(value)) {
-                      return "Password needs minimum 8 characters, 1 uppercase, and 1 special character";
+                      return "Password needs minimum 8 uppercase letters, 8 numbers, 1 lowercase, and 1 special character";
                     }
                     return null;
                   }}

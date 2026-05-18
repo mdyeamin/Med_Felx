@@ -40,8 +40,7 @@ const Register = () => {
   const handleThemeToggle = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z0-9a-z@$!%*?&]{8,}$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z0-9a-z@$!%*?&]{8,}$/;
   return (
     <main
       className={`min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 bg-[#f4f5f6] dark:bg-[#070d1e] text-slate-900 dark:text-white transition-colors duration-300 select-text relative`}
