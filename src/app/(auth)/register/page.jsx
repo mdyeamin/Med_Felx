@@ -43,6 +43,11 @@ const Register = () => {
   };
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z0-9a-z@$!%*?&]{8,}$/;
+
+const handleRegister = ()=>{
+  
+}
+
   return (
     <main
       className={`min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 bg-[#f4f5f6] dark:bg-[#070d1e] text-slate-900 dark:text-white transition-colors duration-300 select-text relative`}
@@ -132,11 +137,7 @@ const Register = () => {
           transition={{ duration: 0.35, ease: "easeOut" }}
           className="w-full max-w-[440px] bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-100 dark:border-slate-800/50 shadow-[0_15px_50px_rgba(0,0,0,0.03)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.3)] p-6 sm:p-8 transition-all duration-300"
         >
-          <Form
-            className="w-full space-y-5"
-            validationBehavior="native"
-            onSubmit={(e) => e.preventDefault()}
-          >
+          <Form className="w-full space-y-5" validationBehavior="native">
             <Fieldset className="w-full space-y-4">
               <div className="space-y-1 mb-0">
                 <Fieldset.Legend className="text-[26px] font-extrabold tracking-tight text-slate-900 dark:text-slate-100 uppercase leading-none">
@@ -284,55 +285,52 @@ const Register = () => {
                   <FieldError className="text-xs font-semibold text-rose-500 mt-1 pl-1" />
                 </TextField>
               </div>
-
-              {/* MAIN PRIMARY SUBMIT ACTION BUTTON */}
-              <div className="pt-2 w-full space-y-4">
-                <Button
-                  type="submit"
-                  className="w-full h-10 bg-[#006A9C] dark:bg-[#0EA5E9] text-white font-bold text-sm rounded-[10px] shadow-[0_4px_14px_rgba(0,106,156,0.15)] dark:shadow-[0_4px_14px_rgba(14,165,233,0.2)] transition-all duration-200 hover:bg-[#005B84] dark:hover:bg-[#38bdf8] flex items-center justify-center gap-2 uppercase tracking-wider"
-                >
-                  <span>Register Now</span>
-                  <FaArrowRight className="text-xs" />
-                </Button>
-
-                {/* Form Path Switching */}
-                <div className="text-center text-xs font-bold text-slate-800 dark:text-slate-200 tracking-wide">
-                  Already have an account?{" "}
-                  <Link
-                    href="/login"
-                    className="text-[#006A9C] dark:text-[#0EA5E9] hover:underline ml-0.5"
-                  >
-                    Login
-                  </Link>
-                </div>
-
-                {/* Divider Line */}
-                <div className="flex items-center py-0 mb-0">
-                  <div className="flex-grow border-t border-slate-100 dark:border-slate-800/80" />
-                  <span className="px-3 text-[13px] font-black text-slate-800 dark:text-slate-200 uppercase tracking-widest">
-                    OR
-                  </span>
-                  <div className="flex-grow border-t border-slate-100 dark:border-slate-800/80" />
-                </div>
-
-                {/* 🛠️ মডার্ন কাস্টমাইজড গুগল বাটন (ওয়েবসাইটের রেজিস্টার বাটনের সাথে মিল রেখে ১০px রাউন্ডেড করা) */}
-                <Button
-                  variant="bordered"
-                  className=" mx-auto  border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/60 font-bold text-base rounded-[10px]  transition-all flex items-center justify-center bg-transparent"
-                >
-                  <FcGoogle className="shrink-0 " />
-                  <span className=" tracking-wider ">Google</span>
-                </Button>
-
-                {/* Minimal Secure Badge Footer info */}
-                <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold text-slate-800 dark:text-slate-200 uppercase tracking-widest pt-1">
-                  <div className="w-4 h-px bg-slate-200 dark:bg-slate-800" />
-                  <span>Secure Verification</span>
-                  <div className="w-4 h-px bg-slate-200 dark:bg-slate-800" />
-                </div>
-              </div>
+              <Button
+                type="submit"
+                className="w-full h-10 bg-[#006A9C] dark:bg-[#0EA5E9] text-white font-bold text-sm rounded-[10px] shadow-[0_4px_14px_rgba(0,106,156,0.15)] dark:shadow-[0_4px_14px_rgba(14,165,233,0.2)] transition-all duration-200 hover:bg-[#005B84] dark:hover:bg-[#38bdf8] flex items-center justify-center gap-2 uppercase tracking-wider"
+              >
+                <span>Register Now</span>
+                <FaArrowRight className="text-xs" />
+              </Button>
             </Fieldset>
           </Form>
+          {/* MAIN PRIMARY SUBMIT ACTION BUTTON */}
+          <div className="pt-2 w-full space-y-4">
+            {/* Form Path Switching */}
+            <div className="text-center text-xs font-bold text-slate-800 dark:text-slate-200 tracking-wide">
+              Already have an account?{" "}
+              <Link
+                href="/login"
+                className="text-[#006A9C] dark:text-[#0EA5E9] hover:underline ml-0.5"
+              >
+                Login
+              </Link>
+            </div>
+
+            {/* Divider Line */}
+            <div className="flex items-center py-0 mb-0">
+              <div className="flex-grow border-t border-slate-100 dark:border-slate-800/80" />
+              <span className="px-3 text-[13px] font-black text-slate-800 dark:text-slate-200 uppercase tracking-widest">
+                OR
+              </span>
+              <div className="flex-grow border-t border-slate-100 dark:border-slate-800/80" />
+            </div>
+
+            <Button
+              variant="bordered"
+              className=" mx-auto  border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/60 font-bold text-base rounded-[10px]  transition-all flex items-center justify-center bg-transparent"
+            >
+              <FcGoogle className="shrink-0 " />
+              <span className=" tracking-wider ">Google</span>
+            </Button>
+
+            {/* Minimal Secure Badge Footer info */}
+            <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold text-slate-800 dark:text-slate-200 uppercase tracking-widest pt-1">
+              <div className="w-4 h-px bg-slate-200 dark:bg-slate-800" />
+              <span>Secure Verification</span>
+              <div className="w-4 h-px bg-slate-200 dark:bg-slate-800" />
+            </div>
+          </div>
         </motion.div>
       </div>
     </main>
