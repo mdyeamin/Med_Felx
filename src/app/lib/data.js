@@ -21,8 +21,8 @@ export const getDoctorById = async (id) => {
 
 // get all appointments for dashboard
 
-export const getAppointments = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments`);
+export const getAppointments = async (userId) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${userId}`);
   const data = await res.json();
   return data;
 };

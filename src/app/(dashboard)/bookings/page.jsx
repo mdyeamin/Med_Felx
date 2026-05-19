@@ -1,19 +1,22 @@
-
+import { auth } from "@/app/lib/auth";
 import { getAppointments } from "@/app/lib/data";
 import BookingCardContainer from "@/components/BookingCardContainer";
+import { headers } from "next/headers";
 import React, { Suspense } from "react";
 
+const DashboardBookings = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(), // you need to pass the headers object.
+  });
+  const userId = session?.user?.id;
 
-const DashboardBookings = async() => {
-    const bookedAppointmentPromise = getAppointments()
-    
+  const bookedAppointmentPromise = getAppointments(userId);
+
   return (
     <div className="">
-      
       {/* ================= MAIN CONTENT ================= */}
       <main className="  w-full overflow-y-auto">
         <div className="max-w-[1000px] mx-auto">
-          
           {/* ── HEADER ── */}
           <div className="mb-8">
             <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">
@@ -26,8 +29,9 @@ const DashboardBookings = async() => {
 
           {/* ── CARDS GRID ── */}
           <Suspense fallback={"loading "}>
-          <BookingCardContainer bookedAppointmentPromise={bookedAppointmentPromise}/>
-
+            <BookingCardContainer
+              bookedAppointmentPromise={bookedAppointmentPromise}
+            />
           </Suspense>
         </div>
       </main>

@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
 import { FiCheckCircle, FiX } from "react-icons/fi";
 
-export const submitAppointment = async (e, doctorData) => {
+export const submitAppointment = async (e, doctorData,user) => {
   e.preventDefault();
   const formData = new FormData(e.currentTarget);
   const formValues = Object.fromEntries(formData.entries());
@@ -12,6 +12,7 @@ export const submitAppointment = async (e, doctorData) => {
   const newAppointment = {
     ...formValues,
     specialty: doctorData.specialty,
+    userId: user?.id,
   };
   console.log(newAppointment, "New appointment data");
   const res = await fetch(

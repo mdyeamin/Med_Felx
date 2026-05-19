@@ -16,7 +16,7 @@ import { IoIosClose } from "react-icons/io";
 import { submitAppointment } from "@/app/lib/action";
 
 const BookingModal = ({doctorData, user}) => {
-  console.log(user);
+  console.log(user,"user console");
   
   const inputWrapperCls =
     "h-[42px] w-full px-3.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 focus-within:border-[#006A9C] dark:focus-within:border-[#0EA5E9] focus-within:ring-1 focus-within:ring-[#006A9C] dark:focus-within:ring-[#0EA5E9]/30 transition-all flex items-center shadow-sm dark:shadow-none";
@@ -61,7 +61,7 @@ const BookingModal = ({doctorData, user}) => {
             >
               {/* ── BODY ── */}
               <Form
-                onSubmit={(e) => submitAppointment(e,doctorData)}
+                onSubmit={(e) => submitAppointment(e,doctorData,user)}
                 validationBehavior="native"
                 className="w-full flex flex-col h-full"
               >
