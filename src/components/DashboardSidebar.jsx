@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Avatar } from "@heroui/react";
 import { FiMenu, FiSun, FiMoon, FiLogOut } from "react-icons/fi";
-// 🚀 গুগল জেমিনাই স্টাইলের প্রিমিয়াম সার্কেলড ও ফিল্ড আইকন লাইব্রেরি
+
 import {
   IoCalendarClearOutline,
   IoPersonCircleOutline,
@@ -17,7 +17,7 @@ import { handleLogout } from "@/app/(auth)/action";
 import { useTheme } from "next-themes";
 
 export default function DashboardSidebar() {
-  // 🔄 স্টেট: শুরুতে চিকন (Thin Mode = true) থাকবে, ক্লিক করলে এক্সপ্যান্ড হবে
+  
   const [isExpanded, setIsExpanded] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -35,7 +35,7 @@ export default function DashboardSidebar() {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  // 🛠️ প্রিমিয়াম আইকন ম্যাপ করা হয়েছে যা স্কয়ার বক্সের ভেতর চমৎকার গ্লো দেবে
+  
   const menuItems = [
     {
       name: "Dashboard",
@@ -62,7 +62,7 @@ export default function DashboardSidebar() {
     <div className="relative h-screen flex select-none font-sans">
       <div className="w-full h-16 bg-white dark:bg-[#0f172a] px-4 flex items-center justify-between lg:hidden border-b border-slate-200/60 dark:border-slate-800/60 fixed top-0 left-0 z-40 transition-colors duration-300">
         <button
-          onClick={() => setIsExpanded(true)} // হ্যামবার্গার ক্লিক করলে ড্রয়ার ওপেন হবে
+          onClick={() => setIsExpanded(true)} 
           className="text-slate-500 hover:text-black dark:hover:text-white text-2xl outline-none cursor-pointer p-1"
         >
           <FiMenu strokeWidth={2.5} />
@@ -150,9 +150,9 @@ export default function DashboardSidebar() {
                   }}
                   className={`
                 w-full flex items-center transition-all outline-none cursor-pointer rounded-xl duration-300 ease-in-out
-                /* 🛠️ কলাপ্সড মোডে স্কয়ার আইকন ফিট রাখতে p-0 এবং এক্সপ্যান্ডেড মোডে ফুল প্যাডিং */
+                
                 ${isExpanded ? "px-4 py-3 gap-3.5 justify-start" : "h-11 w-11 mx-auto p-0 justify-center"}
-                /* 🛠️ পুরো বাটনের কন্ডিশনাল ব্যাকগ্রাউন্ড যা ট্রানজিশন বাড়ি খাওয়া বন্ধ করবে */
+                
                 ${
                   isActive
                     ? isExpanded
