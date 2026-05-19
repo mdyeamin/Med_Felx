@@ -5,14 +5,13 @@ import { Avatar, Button, Popover, Description } from "@heroui/react";
 import { FiGrid, FiCalendar, FiSettings, FiLogOut } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/app/lib/auth-client";
+import { handleLogout } from "@/app/(auth)/register/action";
 
 const ProfileModal = ({ session }) => {
   const user = session;
   const router = useRouter();
 
-  const handleLogout = async () => {
-    await authClient.signOut();
-  };
+
 
   return (
     <div className="flex items-center gap-4">
