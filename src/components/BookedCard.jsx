@@ -7,6 +7,7 @@ import {
   FiTrash2,
   FiUser,
 } from "react-icons/fi";
+import BookedDataDeleteModal from "./BookedDataDeleteModal";
 
 const BookedCard = ({ data }) => {
   console.log(data);
@@ -79,10 +80,7 @@ const BookedCard = ({ data }) => {
           <FiEdit2 className="text-sm" />
           Edit
         </button>
-        <button className="h-[36px] rounded-lg bg-rose-50 dark:bg-rose-500/10 text-[13px] font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-500/20 flex items-center justify-center gap-2 transition-colors">
-          <FiTrash2 className="text-sm" />
-          Cancel
-        </button>
+        <BookedDataDeleteModal/>
       </div>
     </div>
   );
