@@ -6,6 +6,7 @@ import { Button, Card, Chip } from "@heroui/react";
 import { FiStar, FiClock, FiMapPin, FiCalendar, FiArrowLeft } from "react-icons/fi";
 import { FaStethoscope } from "react-icons/fa";
 import { motion } from "framer-motion";
+import BookingModal from "../BookingModal";
 const DetailsCard = ({doctor}) => {
     const doctorData = use(doctor)
 
@@ -50,12 +51,7 @@ const DetailsCard = ({doctor}) => {
             </Card>
 
             {/* BRANDED BOOK APPOINTMENT CTA BUTTON */}
-            <Button
-              className="w-full h-12 bg-[#006A9C] dark:bg-[#0EA5E9] text-white dark:text-slate-900 font-bold text-sm rounded-xl shadow-[0_4px_12px_rgba(0,106,156,0.15)] dark:shadow-[0_4px_12px_rgba(14,165,233,0.2)] transition-all duration-200 hover:bg-[#005B84] dark:hover:bg-[#38bdf8] uppercase tracking-wider gap-2"
-              startContent={<FiCalendar className="text-lg" />}
-            >
-              Book Appointment
-            </Button>
+           <BookingModal/>
           </div>
 
           {/* ===================== RIGHT COLUMN: DATA METADATA ===================== */}
@@ -78,7 +74,7 @@ const DetailsCard = ({doctor}) => {
               </div>
 
               <p className="text-[14px] md:text-[15px] leading-relaxed italic text-slate-500 dark:text-slate-400 font-medium">
-                "{description}"
+                {description}
               </p>
             </div>
 
