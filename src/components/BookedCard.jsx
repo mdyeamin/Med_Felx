@@ -3,14 +3,14 @@ import {
   FiCalendar,
   FiClipboard,
   FiClock,
-  FiEdit2,
-  FiTrash2,
+  
   FiUser,
 } from "react-icons/fi";
 import BookedDataDeleteModal from "./BookedDataDeleteModal";
+import UpdateBookingModal from "./UpdateBookingModal";
 
-const BookedCard = ({ data }) => {
-  console.log(data);
+const BookedCard = ({ data,bookedAppointment }) => {
+  // console.log(data,"data");
 
   const formatTimeAMPM = (time) => {
     if (!time) return "";
@@ -76,11 +76,8 @@ const BookedCard = ({ data }) => {
 
       {/* Actions Footer */}
       <div className="grid grid-cols-2 gap-3 pt-4 border-t border-slate-100 dark:border-slate-800/80 mt-1">
-        <button className="h-[36px] rounded-lg border border-slate-200 dark:border-slate-700 text-[13px] font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center justify-center gap-2 transition-colors">
-          <FiEdit2 className="text-sm" />
-          Edit
-        </button>
-        <BookedDataDeleteModal/>
+        <UpdateBookingModal data={data} />
+        <BookedDataDeleteModal id={data._id}/>
       </div>
     </div>
   );

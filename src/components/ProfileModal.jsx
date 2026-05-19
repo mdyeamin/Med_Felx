@@ -4,7 +4,7 @@ import React from "react";
 import { Avatar, Button, Popover, Description } from "@heroui/react";
 import { FiGrid, FiCalendar, FiSettings, FiLogOut } from "react-icons/fi";
 import { useRouter } from "next/navigation";
-import { authClient } from "@/app/lib/auth-client";
+
 import { handleLogout } from "@/app/(auth)/action";
 import Link from "next/link";
 
@@ -16,7 +16,7 @@ const ProfileModal = ({ session }) => {
     <div className="flex items-center gap-4">
       <Popover placement="bottom-end" showArrow={false} offset={12}>
         <Popover.Trigger aria-label="User profile">
-          <button className="outline-none border-none bg-transparent transition-transform active:scale-95 cursor-pointer rounded-full">
+          <Button className="outline-none border-none bg-transparent transition-transform active:scale-95 cursor-pointer rounded-full">
             <Avatar
               size="sm"
               className="w-9 h-9 border-2 border-[#006A9C] dark:border-[#0EA5E9] rounded-full"
@@ -30,7 +30,7 @@ const ProfileModal = ({ session }) => {
                 {user?.name ? user.name[0] : "U"}
               </Avatar.Fallback>
             </Avatar>
-          </button>
+          </Button>
         </Popover.Trigger>
 
         <Popover.Content className="w-[280px] bg-white dark:bg-[#0f172a] border border-slate-100 dark:border-slate-800/80 shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:shadow-[0_15px_50px_rgba(0,0,0,0.3)] rounded-md">
@@ -72,7 +72,7 @@ const ProfileModal = ({ session }) => {
               </button>
 
               <button
-                onClick={() => router.push("/appointments")}
+                onClick={() => router.push("/bookings")}
                 className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 hover:text-[#006A9C] dark:hover:text-[#0EA5E9] hover:bg-slate-50 dark:hover:bg-slate-900/60 transition-all text-left outline-none cursor-pointer"
               >
                 <FiCalendar className="text-base text-slate-400 shrink-0" />
@@ -80,7 +80,7 @@ const ProfileModal = ({ session }) => {
               </button>
 
               <button
-                onClick={() => router.push("/settings")}
+                onClick={() => router.push("/dashboard")}
                 className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 hover:text-[#006A9C] dark:hover:text-[#0EA5E9] hover:bg-slate-50 dark:hover:bg-slate-900/60 transition-all text-left outline-none cursor-pointer"
               >
                 <FiSettings className="text-base text-slate-400 shrink-0" />
