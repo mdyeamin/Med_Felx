@@ -13,6 +13,7 @@ import {
 } from "@heroui/react";
 import { FiCalendar, FiX } from "react-icons/fi";
 import { IoIosClose } from "react-icons/io";
+import { submitAppointment } from "@/app/lib/action";
 
 const BookingModal = () => {
   const inputWrapperCls =
@@ -58,6 +59,7 @@ const BookingModal = () => {
             >
               {/* ── BODY ── */}
               <Form
+                onSubmit={(e) => submitAppointment(e)}
                 validationBehavior="native"
                 className="w-full flex flex-col h-full"
               >
@@ -68,6 +70,7 @@ const BookingModal = () => {
                       Book Appointment
                     </Fieldset.Legend>
                     <Modal.CloseTrigger asChild>
+                      {/* 🛠️ ফিক্স: হেডার ক্লোজ আইকন এখন নেটিভ html button, এতে ক্লিক পারফেক্টলি কাজ করবে */}
                       <button
                         type="button"
                         className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors cursor-pointer outline-none"
@@ -185,6 +188,20 @@ const BookingModal = () => {
                         </select>
                       </div>
                     </FieldGroup>
+
+                    {/* 🛠️ ROW 4 — Reason (Optional) */}
+                    <FieldGroup className="grid grid-cols-1 w-full">
+                      <TextField name="reason" className="w-full">
+                        <Label className={labelCls}>Reason (Optional)</Label>
+                        <Input
+                          placeholder="Brief reason for your visit..."
+                          classNames={{
+                            inputWrapper: inputWrapperCls,
+                            input: inputTextCls,
+                          }}
+                        />
+                      </TextField>
+                    </FieldGroup>
                   </div>
 
                   {/* ── FOOTER ── */}
@@ -192,18 +209,18 @@ const BookingModal = () => {
                     <Modal.CloseTrigger asChild>
                       <button
                         type="button"
-                        className=" flex items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200 transition-colors cursor-pointer outline-none"
+                        className="text-slate-400 hover:text-slate-700 dark:text-slate-500 dark:hover:text-slate-300 transition-colors cursor-pointer outline-none"
                       >
-                        <IoIosClose className="text-2xl" />
+                        <IoIosClose className="text-4xl" />
                       </button>
                     </Modal.CloseTrigger>
 
-                    <button
+                    <Button
                       type="submit"
                       className="h-[38px] px-5 rounded-lg bg-[#006A9C] dark:bg-[#0EA5E9] text-white dark:text-slate-950 text-[13px] font-bold hover:bg-[#005B84] dark:hover:bg-[#38bdf8] transition-all cursor-pointer shadow-sm"
                     >
                       Confirm Appointment
-                    </button>
+                    </Button>
                   </Fieldset.Actions>
                 </Fieldset>
               </Form>
