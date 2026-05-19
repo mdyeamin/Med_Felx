@@ -141,8 +141,6 @@ export const LoginSubmit = async (e, router) => {
   } catch (error) {
     toast.error(error?.message || "Something went wrong!");
   }
-  console.log("data", data);
-  console.log("error", error);
 };
 
 // logout
@@ -213,12 +211,10 @@ export const handleGoogleSignIn = async (router) => {
               t.visible ? "animate-enter" : "animate-leave"
             } max-w-sm w-full bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-xl border border-slate-200/60 dark:border-slate-800/80 shadow-[0_12px_40px_rgba(0,0,0,0.04)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.25)] px-4 py-3.5 rounded-xl flex items-center gap-3.5 transition-all`}
           >
-            
             <div className="w-9 h-9 rounded-lg bg-slate-50 dark:bg-slate-900 flex items-center justify-center border border-slate-100 dark:border-slate-800 shrink-0 shadow-sm">
               <FcGoogle size={20} className="shrink-0" />
             </div>
 
-            
             <div className="flex-1 flex flex-col text-left">
               <span className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-widest leading-none mb-1">
                 Authenticated
@@ -256,5 +252,75 @@ export const handleGoogleSignIn = async (router) => {
       ),
       { duration: 4000 },
     );
+  }
+};
+
+//update profile
+export const handleUpdateProfile = async (e) => {
+  e.preventDefault();
+  const fromData = new FormData(e.currentTarget);
+  const updatedUser = Object.fromEntries(fromData.entries());
+
+  try {
+    const { data, error } = await authClient.updateUser({
+      image: updatedUser?.image,
+      name: updatedUser?.name,
+    });
+
+    if (error) {
+      toast.custom(
+        (t) => (
+          <div
+            className={`${
+              t.visible ? "animate-enter" : "animate-leave"
+            } max-w-sm w-full bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-xl border border-slate-200/60 dark:border-slate-800/80 shadow-[0_12px_40px_rgba(0,0,0,0.04)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.25)] px-4 py-3.5 rounded-xl flex items-center gap-3.5 transition-all`}
+          >
+            <div className="w-9 h-9 rounded-lg bg-rose-500/10 dark:bg-rose-500/20 flex items-center justify-center text-rose-500 dark:text-rose-400 border border-rose-500/20 shrink-0">
+              <FiAlertCircle strokeWidth={2.5} className="text-xl" />
+            </div>
+
+            <div className="flex-1 flex flex-col text-left">
+              <span className="text-xs font-black text-rose-500 dark:text-rose-400 uppercase tracking-widest leading-none mb-1">
+                Error
+              </span>
+              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 tracking-wide line-clamp-2">
+                {error?.message || "Something went wrong!"}
+              </span>
+            </div>
+          </div>
+        ),
+        { duration: 4000 },
+      );
+    }
+
+    if (data || data?.user) {
+      toast.custom(
+        (t) => (
+          <div
+            className={`${
+              t.visible ? "animate-enter" : "animate-leave"
+            } max-w-sm w-full bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-xl border border-slate-200/60 dark:border-slate-800/60 shadow-[0_12px_40px_rgba(0,0,0,0.04)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.25)] px-4 py-3.5 rounded-xl flex items-center gap-3.5 transition-all`}
+          >
+            <div className="w-9 h-9 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-500 dark:text-emerald-400 border border-emerald-500/20 shrink-0">
+              <FiCheck strokeWidth={2.8} className="text-lg" />
+            </div>
+
+            <div className="flex-1 flex flex-col text-left">
+              <span className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-widest leading-none mb-1">
+                Success
+              </span>
+
+              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 tracking-wide">
+                Hey {data?.user?.name || "User"}, your profile has been updated
+                successfully!
+              </span>
+            </div>
+          </div>
+        ),
+        { duration: 3000 },
+      );
+    }
+  } catch (error) {
+    toast.error(error?.message || "Something went wrong!");
   }
 };
