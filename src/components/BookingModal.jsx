@@ -61,7 +61,7 @@ const BookingModal = ({doctorData, user}) => {
             >
               {/* ── BODY ── */}
               <Form
-                onSubmit={(e) => submitAppointment(e)}
+                onSubmit={(e) => submitAppointment(e,doctorData)}
                 validationBehavior="native"
                 className="w-full flex flex-col h-full"
               >

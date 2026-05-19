@@ -1,9 +1,14 @@
 // appointment book
 
-export const submitAppointment = async (e) => {
+export const submitAppointment = async (e,doctorData) => {
   e.preventDefault();
   const formData = new FormData(e.currentTarget);
-  const newAppointment = Object.fromEntries(formData.entries());
+  const formValues = Object.fromEntries(formData.entries());
+
+  const newAppointment ={
+    ...formValues,
+    specialty: doctorData.specialty
+  }
   console.log(newAppointment,"New appointment data");
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments`, {
     method: "POST",
