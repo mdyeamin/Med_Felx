@@ -92,7 +92,6 @@ const LoginPage = () => {
           </div>
         </div>
 
-        {/* 🛠️ আপডেটেড আই-ক্যাচিং টাইপোগ্রাফি মেসেজ */}
         <div className="relative z-10 max-w-lg space-y-6 my-auto">
           <h1 className="text-4xl xl:text-[46px] font-black text-white tracking-tight leading-[1.1] uppercase select-none">
             Welcome Back. <br />
@@ -139,7 +138,7 @@ const LoginPage = () => {
           <Form
             className="w-full space-y-5"
             validationBehavior="native"
-            onSubmit={(e)=>LoginSubmit(e,router)}
+            onSubmit={(e) => LoginSubmit(e, router)}
           >
             <Fieldset className="w-full space-y-4">
               <div className="space-y-1 mb-0">
@@ -260,9 +259,8 @@ const LoginPage = () => {
               <div className="flex-grow border-t border-slate-100 dark:border-slate-800/60" />
             </div>
 
-            {/* গুগল বাটন (ফুল উইডথ এবং ব্র্যান্ড-সিঙ্কড কাস্টম ডিজাইন) */}
             <Button
-            onClick={handleGoogleSignIn}
+              onClick={handleGoogleSignIn}
               variant="bordered"
               className=" mx-auto  border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900/60 font-bold text-base rounded-[10px]  transition-all flex items-center justify-center bg-transparent"
             >
