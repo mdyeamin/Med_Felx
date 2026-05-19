@@ -27,7 +27,7 @@ import { useTheme } from "next-themes";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { handleGoogleSignIn, LoginSubmit } from "../register/action";
+import { handleGoogleSignIn, LoginSubmit } from "../action";
 
 const LoginPage = () => {
   const [isVisible, setIsVisible] = useState(false);

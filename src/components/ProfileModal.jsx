@@ -5,13 +5,12 @@ import { Avatar, Button, Popover, Description } from "@heroui/react";
 import { FiGrid, FiCalendar, FiSettings, FiLogOut } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/app/lib/auth-client";
-import { handleLogout } from "@/app/(auth)/register/action";
+import { handleLogout } from "@/app/(auth)/action";
+import Link from "next/link";
 
 const ProfileModal = ({ session }) => {
   const user = session;
   const router = useRouter();
-
-
 
   return (
     <div className="flex items-center gap-4">
@@ -89,13 +88,15 @@ const ProfileModal = ({ session }) => {
               </button>
 
               <div className="pt-2 mt-1 border-t border-slate-100 dark:border-slate-800/40">
-                <button
-                  onClick={handleLogout}
-                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/20 transition-all text-left outline-none cursor-pointer"
-                >
-                  <FiLogOut className="text-base text-rose-500 shrink-0" />
-                  <span>Log Out</span>
-                </button>
+                <Link href={"/login"}>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/20 transition-all text-left outline-none cursor-pointer"
+                  >
+                    <FiLogOut className="text-base text-rose-500 shrink-0" />
+                    <span>Log Out</span>
+                  </button>
+                </Link>
               </div>
             </div>
           </Popover.Dialog>
