@@ -15,7 +15,9 @@ import { FiCalendar, FiX } from "react-icons/fi";
 import { IoIosClose } from "react-icons/io";
 import { submitAppointment } from "@/app/lib/action";
 
-const BookingModal = () => {
+const BookingModal = ({doctorData, user}) => {
+  console.log(user);
+  
   const inputWrapperCls =
     "h-[42px] w-full px-3.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 focus-within:border-[#006A9C] dark:focus-within:border-[#0EA5E9] focus-within:ring-1 focus-within:ring-[#006A9C] dark:focus-within:ring-[#0EA5E9]/30 transition-all flex items-center shadow-sm dark:shadow-none";
 
@@ -84,10 +86,10 @@ const BookingModal = () => {
                   <div className="p-6 space-y-4 overflow-y-auto flex-1 w-full">
                     {/* ROW 1 — Selected Doctor | User Email */}
                     <FieldGroup className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4 w-full">
-                      <TextField name="doctorName" className="w-full">
-                        <Label className={labelCls}>Selected Doctor</Label>
+                      <TextField isReadOnly defaultValue={doctorData?.name} name="doctorName" className="w-full">
+                        <Label className={labelCls}> Doctor Name</Label>
                         <Input
-                          placeholder="Dr. Ayesha Rahman"
+                          
                           classNames={{
                             inputWrapper: inputWrapperCls,
                             input: inputTextCls,
@@ -98,11 +100,13 @@ const BookingModal = () => {
                       <TextField
                         name="userEmail"
                         type="email"
+                        defaultValue={user?.email}
+                        isReadOnly
                         className="w-full"
                       >
                         <Label className={labelCls}>User Email</Label>
                         <Input
-                          placeholder="patient@example.com"
+                          
                           classNames={{
                             inputWrapper: inputWrapperCls,
                             input: inputTextCls,

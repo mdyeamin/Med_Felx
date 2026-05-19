@@ -2,18 +2,21 @@
 import React, { use, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Card, Chip } from "@heroui/react";
+import {  Card, Chip } from "@heroui/react";
 import { FiStar, FiClock, FiMapPin, FiCalendar, FiArrowLeft } from "react-icons/fi";
 import { FaStethoscope } from "react-icons/fa";
 import { motion } from "framer-motion";
 import BookingModal from "../BookingModal";
+import { authClient } from "@/app/lib/auth-client";
 const DetailsCard = ({doctor}) => {
     const doctorData = use(doctor)
 
     const {name,specialty,image,experience,description,hospital,location,fee,rating,availability} = doctorData
     
     const [selectedSlot, setSelectedSlot] = useState(0);
-    
+    const { data, isPending } = authClient.useSession();
+      const user = data?.user;
+      console.log(user);
     return (
        <div className="min-h-screen bg-white dark:bg-[#0b1329] text-slate-900 dark:text-white transition-colors duration-300 py-8 px-4 md:px-14">
       <div className="max-w-7xl mx-auto w-full space-y-6">
@@ -51,7 +54,7 @@ const DetailsCard = ({doctor}) => {
             </Card>
 
             {/* BRANDED BOOK APPOINTMENT CTA BUTTON */}
-           <BookingModal/>
+           <BookingModal doctorData={doctorData} user={user}/>
           </div>
 
           {/* ===================== RIGHT COLUMN: DATA METADATA ===================== */}

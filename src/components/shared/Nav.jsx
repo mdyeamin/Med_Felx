@@ -19,7 +19,6 @@ const Nav = () => {
   const { theme, setTheme } = useTheme();
   const { data, isPending } = authClient.useSession();
   const user = data?.user;
-  console.log(user);
 
   // Hydration state sync mismatch pipeline error handle korar jonno hook setup
   useEffect(() => {

@@ -5,7 +5,7 @@ export const submitAppointment = async (e) => {
   const formData = new FormData(e.currentTarget);
   const newAppointment = Object.fromEntries(formData.entries());
   console.log(newAppointment,"New appointment data");
-  const res = await fetch(`http://localhost:5000/appointments`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
