@@ -1,6 +1,7 @@
 import { auth } from "@/app/lib/auth";
 import { getAppointments } from "@/app/lib/data";
 import BookingCardContainer from "@/components/BookingCardContainer";
+import DoctorsSkeleton from "@/components/DoctorsSkeleton";
 import { headers } from "next/headers";
 import React, { Suspense } from "react";
 
@@ -28,7 +29,7 @@ const DashboardBookings = async () => {
           </div>
 
           {/* ── CARDS GRID ── */}
-          <Suspense fallback={"loading "}>
+          <Suspense fallback={<DoctorsSkeleton/>}>
             <BookingCardContainer
               bookedAppointmentPromise={bookedAppointmentPromise}
             />

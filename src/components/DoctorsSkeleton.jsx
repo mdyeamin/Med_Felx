@@ -2,25 +2,13 @@ import React from 'react';
 
 const DoctorsSkeleton = () => {
   
-  const skeletonArray = Array.from({ length: 6 });
+  const skeletonArray = Array.from({ length: 3 });
 
   return (
-    <div className="min-h-screen bg-slate-50/50 dark:bg-[#0f172a] p-6 md:p-8 lg:p-10 w-full transition-colors duration-500">
+    <div className="min-h-screen w-full transition-colors duration-500">
       <div className="max-w-[1200px] mx-auto">
         
-        
-        <div className="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-10">
-          <div className="space-y-3 w-full max-w-sm">
-            
-            <div className="h-8 md:h-10 bg-slate-200 dark:bg-slate-800/80 rounded-xl w-3/4 animate-pulse"></div>
-            
-            <div className="h-4 md:h-5 bg-slate-200 dark:bg-slate-800/80 rounded-lg w-1/2 animate-pulse"></div>
-          </div>
-          
-          <div className="h-12 w-full md:w-64 bg-slate-200 dark:bg-slate-800/80 rounded-2xl animate-pulse hidden sm:block"></div>
-        </div>
-
-        {/* ── DOCTORS GRID SKELETON ── */}
+        {/* ── DOCTORS GRID SKELETON (Only Cards) ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {skeletonArray.map((_, index) => (
             <div 

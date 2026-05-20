@@ -7,7 +7,8 @@ export const getTopDoctors = async () => {
 
 // all doctors get
 export const getAllDoctors = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-appointments`);
+  
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-appointments`,);
   const data = await res.json();
   return data;
 };
