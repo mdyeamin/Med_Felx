@@ -92,6 +92,7 @@ const BookingModal = ({ doctorData, user }) => {
                     <Modal.CloseTrigger asChild>
                       <button
                         type="button"
+                        onClick={() => setIsOpen(false)}
                         className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors cursor-pointer outline-none"
                       >
                         <FiX className="text-xl" />
@@ -233,7 +234,7 @@ const BookingModal = ({ doctorData, user }) => {
                     <Modal.CloseTrigger asChild>
                       <button
                         type="button"
-                        onClick={() => setIsOpen(false)}
+                        
                         className="text-slate-400 hover:text-slate-700 dark:text-slate-500 dark:hover:text-slate-300 transition-colors cursor-pointer outline-none"
                       >
                         <IoIosClose className="text-4xl" />

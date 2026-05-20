@@ -1,6 +1,4 @@
 "use client";
-
-import React from "react";
 import {
   Modal,
   Button,
@@ -11,14 +9,31 @@ import {
   Label,
   Input,
 } from "@heroui/react";
-import {  FiEdit2, FiX } from "react-icons/fi";
+import { FiEdit2, FiX } from "react-icons/fi";
 import { IoIosClose } from "react-icons/io";
 import { updateAppointment } from "@/app/lib/action";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
+const UpdateBookingModal = ({ data }) => {
+  const id = data._id;
+  const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
-const UpdateBookingModal = ({  data }) => {
-  console.log(data,"update data");
-const id = data._id;
+const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    
+    
+    const result = await updateAppointment(e,id);
+    
+    
+    if (result) {
+      setIsOpen(false); 
+      router.refresh(); 
+    }
+  };
+
+  // console.log(data,"update data");
   const inputWrapperCls =
     "h-[42px] w-full px-3.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 focus-within:border-[#006A9C] dark:focus-within:border-[#0EA5E9] focus-within:ring-1 focus-within:ring-[#006A9C] dark:focus-within:ring-[#0EA5E9]/30 transition-all flex items-center shadow-sm dark:shadow-none";
 
@@ -37,9 +52,14 @@ const id = data._id;
         }
       `}</style>
 
-      <Modal scrollBehavior="inside">
+      <Modal scrollBehavior="inside"
+      isOpen={isOpen} 
+        onOpenChange={setIsOpen}
+      >
         {/* TRIGGER */}
-        <Button className="h-[36px] rounded-lg border border-slate-200 dark:border-slate-700 text-[13px] font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center justify-center gap-2 transition-colors">
+        <Button 
+        onPress={() => setIsOpen(true)}
+        className="h-[36px] rounded-lg border border-slate-200 dark:border-slate-700 text-[13px] font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center justify-center gap-2 transition-colors">
           <FiEdit2 className="text-sm" />
           Edit
         </Button>
@@ -60,7 +80,7 @@ const id = data._id;
             >
               {/* ── BODY ── */}
               <Form
-                onSubmit={(e)=>updateAppointment(e, id)}
+               onSubmit={handleFormSubmit}
                 validationBehavior="native"
                 className="w-full flex flex-col h-full"
               >
@@ -71,9 +91,9 @@ const id = data._id;
                       Update Appointment
                     </Fieldset.Legend>
                     <Modal.CloseTrigger asChild>
-                    
                       <button
                         type="button"
+                        onClick={() => setIsOpen(false)}
                         className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors cursor-pointer outline-none"
                       >
                         <FiX className="text-xl" />
@@ -119,10 +139,13 @@ const id = data._id;
 
                     {/* ROW 2 — Full Name | Phone Number */}
                     <FieldGroup className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4 w-full">
-                      <TextField defaultValue={data?.patientName} name="patientName" className="w-full">
+                      <TextField
+                        defaultValue={data?.patientName}
+                        name="patientName"
+                        className="w-full"
+                      >
                         <Label className={labelCls}>Full Name</Label>
                         <Input
-                          
                           classNames={{
                             inputWrapper: inputWrapperCls,
                             input: inputTextCls,
@@ -130,10 +153,14 @@ const id = data._id;
                         />
                       </TextField>
 
-                      <TextField defaultValue={data?.phone} name="phone" type="tel" className="w-full">
+                      <TextField
+                        defaultValue={data?.phone}
+                        name="phone"
+                        type="tel"
+                        className="w-full"
+                      >
                         <Label className={labelCls}>Phone Number</Label>
                         <Input
-                          
                           classNames={{
                             inputWrapper: inputWrapperCls,
                             input: inputTextCls,
@@ -145,7 +172,6 @@ const id = data._id;
                     {/* ROW 3 — Date | Time | Gender */}
                     <FieldGroup className="grid grid-cols-1 sm:grid-cols-3 gap-x-5 gap-y-4 w-full">
                       <TextField
-                     
                         name="appointmentDate"
                         type="date"
                         className="w-full"
@@ -153,7 +179,7 @@ const id = data._id;
                         <Label className={labelCls}>Date</Label>
                         <div className={inputWrapperCls}>
                           <input
-                           defaultValue={data?.appointmentDate}
+                            defaultValue={data?.appointmentDate}
                             name="appointmentDate"
                             type="date"
                             className={`${inputTextCls} [color-scheme:light] dark:[color-scheme:dark]`}
@@ -169,10 +195,9 @@ const id = data._id;
                         <Label className={labelCls}>Time</Label>
                         <div className={inputWrapperCls}>
                           <input
-                          defaultValue={data?.appointmentTime}
+                            defaultValue={data?.appointmentTime}
                             name="appointmentTime"
                             type="time"
-                            
                             className={`${inputTextCls} [color-scheme:light] dark:[color-scheme:dark]`}
                           />
                         </div>
@@ -200,7 +225,11 @@ const id = data._id;
 
                     {/* 🛠️ ROW 4 — Reason (Optional) */}
                     <FieldGroup className="grid grid-cols-1 w-full">
-                      <TextField defaultValue={data?.reason} name="reason" className="w-full">
+                      <TextField
+                        defaultValue={data?.reason}
+                        name="reason"
+                        className="w-full"
+                      >
                         <Label className={labelCls}>Reason (Optional)</Label>
                         <Input
                           placeholder="Brief reason for your visit..."
@@ -226,6 +255,7 @@ const id = data._id;
 
                     <Button
                       type="submit"
+                      
                       className="h-[38px] px-5 rounded-lg bg-[#006A9C] dark:bg-[#0EA5E9] text-white dark:text-slate-950 text-[13px] font-bold hover:bg-[#005B84] dark:hover:bg-[#38bdf8] transition-all cursor-pointer shadow-sm"
                     >
                       Update Appointment
