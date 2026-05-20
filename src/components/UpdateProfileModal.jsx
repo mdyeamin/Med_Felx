@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Modal,
@@ -16,10 +16,21 @@ import { FiEdit3, FiUser, FiImage } from "react-icons/fi";
 import { FaArrowRight } from "react-icons/fa6";
 import { handleUpdateProfile } from "@/app/(auth)/action";
 
-const UpdateProfileModal = () => {
+const UpdateProfileModal = ({user}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSubmit = async (e) => {
+    
+    const isSuccess = await handleUpdateProfile(e);
+    
+    
+    if (isSuccess) {
+      setIsOpen(false);
+    }
+  };
   return (
-    <Modal>
-      <Button className="bg-[#006A9C] dark:bg-[#0EA5E9] text-white dark:text-slate-950 font-black text-xs rounded-xl shadow-[0_4px_12px_rgba(14,165,233,0.15)] transition-all hover:scale-[1.02] active:scale-[0.98] shrink-0 px-5 h-11 uppercase tracking-widest flex items-center gap-2">
+    <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
+      <Button onPress={() => setIsOpen(true)} className="bg-[#006A9C] dark:bg-[#0EA5E9] text-white dark:text-slate-950 font-black text-xs rounded-xl shadow-[0_4px_12px_rgba(14,165,233,0.15)] transition-all hover:scale-[1.02] active:scale-[0.98] shrink-0 px-5 h-11 uppercase tracking-widest flex items-center gap-2">
         <FiEdit3 className="text-sm stroke-[2.5]" />
         <span>Edit Profile</span>
       </Button>
@@ -30,7 +41,7 @@ const UpdateProfileModal = () => {
             <Modal.CloseTrigger />
 
             <Form
-              onSubmit={(e) => handleUpdateProfile(e)}
+              onSubmit={handleSubmit}
               className="w-full"
               validationBehavior="native"
             >
@@ -51,6 +62,7 @@ const UpdateProfileModal = () => {
                     isRequired
                     name="name"
                     type="text"
+                    defaultValue={user?.name}
                     validate={(value) => {
                       if (!value || value.trim().length < 3) {
                         return "Name must be at least 3 characters long";
@@ -78,6 +90,7 @@ const UpdateProfileModal = () => {
                     className="w-full"
                     name="image"
                     type="text"
+                    defaultValue={user?.image}
                     isRequired
                     validate={(value) => {
                       if (!value || value.trim() === "") {
@@ -110,7 +123,8 @@ const UpdateProfileModal = () => {
 
               <Modal.Footer className="px-6 pb-6 pt-2 flex items-center justify-end gap-3">
                 <Button
-                  slot="close"
+                onPress={() => setIsOpen(false)}
+                 
                   className="bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800/60 text-slate-500 dark:text-slate-400 font-bold text-xs rounded-xl h-11 px-5 uppercase tracking-wider outline-none transition-colors"
                 >
                   Cancel

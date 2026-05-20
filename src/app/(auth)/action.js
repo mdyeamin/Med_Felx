@@ -319,8 +319,11 @@ export const handleUpdateProfile = async (e) => {
         ),
         { duration: 3000 },
       );
+      return true
     }
+    return false
   } catch (error) {
     toast.error(error?.message || "Something went wrong!");
+    return false
   }
 };

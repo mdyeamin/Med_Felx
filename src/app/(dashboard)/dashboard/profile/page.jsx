@@ -61,7 +61,7 @@ const Profile = () => {
           </div>
 
           {/* EDIT PROFILE BUTTON */}
-          <UpdateProfileModal />
+          <UpdateProfileModal user={user}/>
         </div>
       </Card>
 
