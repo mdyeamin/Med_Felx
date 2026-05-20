@@ -44,7 +44,7 @@ export default function DashboardSidebar() {
     },
     {
       name: "My Bookings",
-      path: "/bookings",
+      path: "/dashboard/bookings",
       icon: <IoCalendarClearOutline className="text-xl" />,
     },
     {

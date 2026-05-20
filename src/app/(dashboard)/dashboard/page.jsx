@@ -44,7 +44,7 @@ const Dashboard = () => {
         {/* ── HEADER ── */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <h1 className="text-2xl md:text-[32px] font-extrabold text-slate-900 dark:slate-100 tracking-tight">
+            <h1 className="text-2xl md:text-[32px] font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">
               Dashboard Overview
             </h1>
             <p className="text-sm md:text-[15px] text-slate-500 dark:text-slate-400 mt-1.5 font-medium">

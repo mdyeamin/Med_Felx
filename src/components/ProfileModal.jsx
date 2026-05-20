@@ -72,7 +72,7 @@ const ProfileModal = ({ session }) => {
               </button>
 
               <button
-                onClick={() => router.push("/bookings")}
+                onClick={() => router.push("/dashboard/bookings")}
                 className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 hover:text-[#006A9C] dark:hover:text-[#0EA5E9] hover:bg-slate-50 dark:hover:bg-slate-900/60 transition-all text-left outline-none cursor-pointer"
               >
                 <FiCalendar className="text-base text-slate-400 shrink-0" />
