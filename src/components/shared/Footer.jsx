@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-// 🛠️ আরও কিছু সোশ্যাল এবং UI আইকন অ্যাড করা হলো
+
 import { 
   RiTwitterXFill, 
   RiFacebookCircleFill, 
@@ -15,7 +15,7 @@ import { FiArrowRight, FiMail } from "react-icons/fi";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  // লিংকগুলোকে সুন্দরভাবে গ্রুপ করা হলো
+  
   const quickLinks = [
     { name: "About Us", path: "/about" },
     { name: "Our Doctors", path: "/doctors" },
