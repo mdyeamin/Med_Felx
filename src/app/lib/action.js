@@ -27,6 +27,45 @@ export const submitAppointment = async (e, doctorData,user) => {
   );
   console.log(res, "Response from server:");
 
+  if (res.ok) {
+    toast.custom((t) => (
+      <div
+        className={`${
+          t.visible ? "animate-enter" : "animate-leave"
+        } max-w-sm w-full bg-white/90 dark:bg-[#1e293b]/90 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-2xl pointer-events-auto flex border border-slate-200/60 dark:border-slate-700/60 overflow-hidden`}
+      >
+        <div className="flex-1 w-0 p-4">
+          <div className="flex items-start">
+            <div className="flex-shrink-0 pt-0.5">
+              <div className="w-9 h-9 rounded-full bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center">
+                <FiCheckCircle className="text-emerald-600 dark:text-emerald-400 text-lg" />
+              </div>
+            </div>
+            <div className="ml-3 flex-1">
+              <p className="text-[15px] font-extrabold text-slate-900 dark:text-white">
+                Success
+              </p>
+              <p className="mt-0.5 text-[13px] font-medium text-slate-500 dark:text-slate-400">
+                Your appointment has been successfully booked.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex border-l border-slate-200/60 dark:border-slate-700/60">
+          <button
+            onClick={() => toast.dismiss(t.id)}
+            className="w-full border border-transparent rounded-none rounded-r-2xl p-4 flex items-center justify-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors outline-none cursor-pointer"
+          >
+            <FiX className="text-lg" />
+          </button>
+        </div>
+      </div>
+    ));
+    return true;
+    // redirect("/all-appointments");
+  }
+  
   //   const data = await res.json();
   //   console.log(data,"Data from server:");
 };
