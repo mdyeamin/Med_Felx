@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
-// 🛠️ ফিক্স: FiHome নতুন করে অ্যাড করা হলো
+
 import { FiAlertTriangle, FiRefreshCcw, FiGrid, FiHome } from "react-icons/fi";
 
 const ErrorPage = ({ error, reset }) => {
@@ -13,14 +13,14 @@ const ErrorPage = ({ error, reset }) => {
   return (
     <div className="min-h-screen w-full bg-slate-50 dark:bg-[#090e17] flex items-center justify-center p-6 relative overflow-hidden font-sans transition-colors duration-500">
       
-      {/* ── BACKGROUND GRID & GLOWS ── */}
+      
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]"></div>
 
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-rose-500/20 dark:bg-rose-500/10 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[80px] animate-blob"></div>
       <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-orange-400/20 dark:bg-orange-500/10 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[80px] animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-32 left-1/2 w-[40rem] h-[40rem] bg-red-500/10 dark:bg-red-500/5 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[100px] animate-blob animation-delay-4000"></div>
 
-      {/* ── MAIN CONTENT CONTAINER ── */}
+      
       <div className="relative z-10 flex flex-col items-center w-full max-w-2xl">
 
         {/* Top Status Badge */}
@@ -48,7 +48,6 @@ const ErrorPage = ({ error, reset }) => {
             An unexpected error has occurred in our system. Don't worry, it's not your fault. Let's try to recover the page.
           </p>
 
-          {/* 🛠️ Action Buttons (3 Buttons with flex-wrap) */}
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 md:gap-4">
             
             {/* 1. Home Button (New) */}

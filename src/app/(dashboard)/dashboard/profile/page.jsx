@@ -1,13 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-import { Avatar, Button, Card, Divider } from "@heroui/react";
+import { Avatar, Card } from "@heroui/react";
 import {
   FiUser,
   FiMail,
   FiPhone,
   FiMapPin,
-  FiEdit3,
   FiCheckCircle,
   FiShield,
 } from "react-icons/fi";
@@ -63,7 +61,7 @@ const Profile = () => {
           </div>
 
           {/* EDIT PROFILE BUTTON */}
-         <UpdateProfileModal/>
+          <UpdateProfileModal />
         </div>
       </Card>
 

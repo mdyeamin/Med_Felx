@@ -49,12 +49,12 @@ export const RegisterSubmit = async (e, router) => {
               t.visible ? "animate-enter" : "animate-leave"
             } max-w-sm w-full bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-xl border border-slate-200/60 dark:border-slate-800/80 shadow-[0_12px_40px_rgba(0,0,0,0.04)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.25)] px-4 py-3.5 rounded-xl flex items-center gap-3.5 transition-all`}
           >
-            {/* গ্লোয়িং সাকসেস আইকন ক্যাপসুল */}
+           
             <div className="w-9 h-9 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-500 dark:text-emerald-400 border border-emerald-500/20 shrink-0">
               <FiCheck strokeWidth={2.8} className="text-lg" />
             </div>
 
-            {/* টেক্সট কন্টেন্ট এরিয়া */}
+           
             <div className="flex-1 flex flex-col text-left">
               <span className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-widest leading-none mb-1">
                 Success

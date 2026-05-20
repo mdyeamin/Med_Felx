@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { Button, Card } from "@heroui/react";
 import { FiStar, FiClock, FiMapPin, FiEye } from "react-icons/fi";
-import { FaStethoscope } from "react-icons/fa"; // Specialty আইকনের জন্য
+import { FaStethoscope } from "react-icons/fa"; 
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -20,7 +20,7 @@ const DoctorCard = ({ doctor }) => {
     hospital,
   } = doctor;
 
-  // ডেটা টাইপ সেফটি ভ্যালিডেশন
+  
   const displayLocation =
     typeof location === "object" && location !== null
       ? `${location.area || ""} ${location.city || ""}`.trim()

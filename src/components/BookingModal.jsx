@@ -72,7 +72,7 @@ const BookingModal = ({doctorData, user}) => {
                       Book Appointment
                     </Fieldset.Legend>
                     <Modal.CloseTrigger asChild>
-                      {/* 🛠️ ফিক্স: হেডার ক্লোজ আইকন এখন নেটিভ html button, এতে ক্লিক পারফেক্টলি কাজ করবে */}
+                     
                       <button
                         type="button"
                         className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors cursor-pointer outline-none"
