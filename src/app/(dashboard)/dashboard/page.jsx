@@ -39,7 +39,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50/50 dark:bg-[#0f172a] p-5 md:p-8 lg:p-10 transition-colors">
+    <div className="min-h-screen transition-colors mt-20 lg:mt-0">
       <div className="max-w-[1200px] mx-auto space-y-8">
         {/* ── HEADER ── */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">

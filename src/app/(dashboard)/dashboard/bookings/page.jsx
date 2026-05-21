@@ -20,7 +20,7 @@ const DashboardBookings = async () => {
         <div className="max-w-[1000px] mx-auto">
           {/* ── HEADER ── */}
           <div className="mb-8">
-            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">
+            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight mt-20 lg:mt-0">
               My Bookings
             </h1>
             <p className="text-sm md:text-base text-slate-500 dark:text-slate-400 font-medium mt-1.5">
