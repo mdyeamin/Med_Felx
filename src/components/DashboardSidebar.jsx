@@ -3,11 +3,12 @@
 import React, { useEffect, useState } from "react";
 import { Avatar } from "@heroui/react";
 import { FiMenu, FiSun, FiMoon, FiLogOut } from "react-icons/fi";
-
+import { PiKeyReturnBold } from "react-icons/pi";
 import {
   IoCalendarClearOutline,
   IoPersonCircleOutline,
   IoGridOutline,
+  IoHome,
 } from "react-icons/io5";
 import { useRouter, usePathname } from "next/navigation";
 import { authClient } from "@/app/lib/auth-client";
@@ -37,6 +38,11 @@ export default function DashboardSidebar() {
 
   
   const menuItems = [
+    {
+      name: "Return Home",
+      path: "/",
+      icon: <PiKeyReturnBold className="text-xl" />,
+    },
     {
       name: "Dashboard",
       path: "/dashboard",
