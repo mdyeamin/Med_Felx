@@ -82,7 +82,7 @@ const Nav = () => {
 
         {/* Desktop Utility Controls */}
         {user ? (
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex  items-start gap-8">
             {/* Dynamic Theme Switching Action Button */}
             <button
               onClick={handleThemeToggle}
