@@ -1,14 +1,14 @@
 import { getDoctorById } from "@/app/lib/data";
 import DoctorsDetailsSkeleton from "@/components/DoctorsDetailsSkeleton";
-import DoctorsSkeleton from "@/components/DoctorsSkeleton";
+
 import DetailsCard from "@/components/shared/DetailsCard";
 import React, { Suspense } from "react";
 
-export async function generateMetadata({ params, }) {
+export async function generateMetadata({ params }) {
   const id = (await params).id;
-  console.log(id);
+  // console.log(id);
   const doctor = await getDoctorById(id);
-  console.log(doctor, "doctor Data");
+  // console.log(doctor, "doctor Data");
 
   return {
     title: `${doctor.name} || ${doctor.description}`,
