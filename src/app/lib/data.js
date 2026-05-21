@@ -39,8 +39,17 @@ export const getDoctorById = async (id) => {
 // get all appointments for dashboard
 
 export const getAppointments = async (userId) => {
+    const {token} = await auth.api.getToken({
+    headers: await headers(),
+  });
+  console.log(token, "token from all booked appointments");
+  
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${userId}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${userId}`,{
+      headers :{
+        authorization: `Bearer ${token}`
+      }
+    }
   );
   const data = await res.json();
   return data;
