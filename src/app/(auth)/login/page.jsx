@@ -194,9 +194,17 @@ const LoginPage = () => {
                     return null;
                   }}
                 >
-                  <Label className="text-[10px] font-extrabold text-slate-500 dark:text-slate-400 tracking-widest uppercase mb-1 block">
-                    Password
-                  </Label>
+                  <div className="flex justify-between items-center mb-1">
+                    <Label className="text-[10px] font-extrabold text-slate-500 dark:text-slate-400 tracking-widest uppercase block">
+                      Password
+                    </Label>
+                    <Link
+                      href="/forgot-password"
+                      className="text-[11px] font-bold text-[#006A9C] dark:text-[#0EA5E9] hover:underline"
+                    >
+                      Forgot Password?
+                    </Link>
+                  </div>
                   <InputGroup className="group transition-all border border-slate-200/80 dark:border-slate-800/80 focus-within:border-[#006A9C] dark:focus-within:border-[#0EA5E9] focus-within:ring-1 focus-within:ring-[#006A9C] dark:focus-within:ring-[#0EA5E9] rounded-lg overflow-hidden bg-[#eef2f6] dark:bg-slate-900/50">
                     <InputGroup.Prefix className="pl-3.5 text-slate-400 group-focus-within:text-[#006A9C] dark:group-focus-within:text-[#0EA5E9] transition-colors">
                       <FiLock className="size-4" />
