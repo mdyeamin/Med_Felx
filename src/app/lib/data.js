@@ -42,7 +42,7 @@ export const getAppointments = async (userId) => {
     const {token} = await auth.api.getToken({
     headers: await headers(),
   });
-  console.log(token, "token from all booked appointments");
+  // console.log(token, "token from all booked appointments");
   
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${userId}`,{
