@@ -1,9 +1,6 @@
-
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { auth } from "./app/lib/auth";
-
-
 
 // This function can be marked `async` if using `await` inside
 export async function proxy(request) {
@@ -18,5 +15,10 @@ export async function proxy(request) {
 }
 
 export const config = {
-  matcher: ["/all-appointments", "/all-appointments/:id","/dashboard","/dashboard/bookings","/dashboard/profile"],
+  matcher: [
+    "/all-appointments/:id",
+    "/dashboard",
+    "/dashboard/bookings",
+    "/dashboard/profile",
+  ],
 };
