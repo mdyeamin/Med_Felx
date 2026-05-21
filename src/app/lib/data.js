@@ -9,9 +9,9 @@ export const getTopDoctors = async () => {
 };
 
 // all doctors get
-export const getAllDoctors = async () => {
+export const getAllDoctors = async (searchQuery = "") => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/all-appointments`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/all-appointments?search=${searchQuery}`,{ cache: "no-store" }
   );
   const data = await res.json();
   return data;
