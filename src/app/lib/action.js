@@ -77,10 +77,15 @@ export const submitAppointment = async (e, doctorData, user) => {
 // appointment delete by id
 
 export const deleteAppointment = async (id) => {
+  const { data: token } = await authClient.token();
+  console.log(token, "token for delete appointment");
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${id}`,
     {
       method: "DELETE",
+      headers:{
+        authorization:`Bearer ${token.token}`
+      }
     },
   );
   const data = await res.json();
@@ -135,7 +140,7 @@ export const updateAppointment = async (e, id) => {
   const UpdateAppointment = Object.fromEntries(formData.entries());
   console.log(UpdateAppointment, "Updated appointment data");
   const { data: token } = await authClient.token();
-  console.log(token, "token for appointment");
+  // console.log(token, "token for updated appointment");
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${id}`,
     {
