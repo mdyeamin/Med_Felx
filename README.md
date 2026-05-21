@@ -3,7 +3,7 @@
 MedFlex is a complete full-stack healthcare website. It helps patients find good doctors and easily book appointments online. The website is very fast, secure, and works perfectly on mobile phones and computers.
 
 ### 🌐 Live Website
-**[Visit MedFlex Live Here](https://your-medflex-live-link.web.app)** *(Put your live link here)*
+**[Visit MedFlex Live Here](https://mad-flex.vercel.app/)** *([https://mad-flex.vercel.app/](https://mad-flex.vercel.app/))*
 
 ---
 

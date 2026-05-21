@@ -140,6 +140,7 @@ const handleFormSubmit = async (e) => {
                     {/* ROW 2 — Full Name | Phone Number */}
                     <FieldGroup className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4 w-full">
                       <TextField
+                      isRequired
                         defaultValue={data?.patientName}
                         name="patientName"
                         className="w-full"
@@ -154,6 +155,7 @@ const handleFormSubmit = async (e) => {
                       </TextField>
 
                       <TextField
+                      isRequired
                         defaultValue={data?.phone}
                         name="phone"
                         type="tel"
@@ -172,6 +174,7 @@ const handleFormSubmit = async (e) => {
                     {/* ROW 3 — Date | Time | Gender */}
                     <FieldGroup className="grid grid-cols-1 sm:grid-cols-3 gap-x-5 gap-y-4 w-full">
                       <TextField
+                      isRequired
                         name="appointmentDate"
                         type="date"
                         className="w-full"
@@ -179,6 +182,7 @@ const handleFormSubmit = async (e) => {
                         <Label className={labelCls}>Date</Label>
                         <div className={inputWrapperCls}>
                           <input
+                          required
                             defaultValue={data?.appointmentDate}
                             name="appointmentDate"
                             type="date"
@@ -188,6 +192,7 @@ const handleFormSubmit = async (e) => {
                       </TextField>
 
                       <TextField
+                      isRequired
                         name="appointmentTime"
                         type="time"
                         className="w-full"
@@ -195,6 +200,7 @@ const handleFormSubmit = async (e) => {
                         <Label className={labelCls}>Time</Label>
                         <div className={inputWrapperCls}>
                           <input
+                          required
                             defaultValue={data?.appointmentTime}
                             name="appointmentTime"
                             type="time"

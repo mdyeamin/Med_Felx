@@ -51,9 +51,7 @@ const BookingModal = ({ doctorData, user }) => {
         }
       `}</style>
 
-      <Modal scrollBehavior="inside"
-       isOpen={isOpen} 
-       onOpenChange={setIsOpen}>
+      <Modal scrollBehavior="inside" isOpen={isOpen} onOpenChange={setIsOpen}>
         {/* TRIGGER */}
         <Button
           onPress={() => setIsOpen(true)}
@@ -138,7 +136,11 @@ const BookingModal = ({ doctorData, user }) => {
 
                     {/* ROW 2 — Full Name | Phone Number */}
                     <FieldGroup className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4 w-full">
-                      <TextField name="patientName" className="w-full">
+                      <TextField
+                        isRequired
+                        name="patientName"
+                        className="w-full"
+                      >
                         <Label className={labelCls}>Full Name</Label>
                         <Input
                           placeholder="John Doe"
@@ -149,7 +151,12 @@ const BookingModal = ({ doctorData, user }) => {
                         />
                       </TextField>
 
-                      <TextField name="phone" type="tel" className="w-full">
+                      <TextField
+                        isRequired
+                        name="phone"
+                        type="tel"
+                        className="w-full"
+                      >
                         <Label className={labelCls}>Phone Number</Label>
                         <Input
                           placeholder="+880 1..."
@@ -164,6 +171,7 @@ const BookingModal = ({ doctorData, user }) => {
                     {/* ROW 3 — Date | Time | Gender */}
                     <FieldGroup className="grid grid-cols-1 sm:grid-cols-3 gap-x-5 gap-y-4 w-full">
                       <TextField
+                        isRequired
                         name="appointmentDate"
                         type="date"
                         className="w-full"
@@ -171,6 +179,7 @@ const BookingModal = ({ doctorData, user }) => {
                         <Label className={labelCls}>Date</Label>
                         <div className={inputWrapperCls}>
                           <input
+                            required
                             name="appointmentDate"
                             type="date"
                             className={`${inputTextCls} [color-scheme:light] dark:[color-scheme:dark]`}
@@ -179,6 +188,7 @@ const BookingModal = ({ doctorData, user }) => {
                       </TextField>
 
                       <TextField
+                        isRequired
                         name="appointmentTime"
                         type="time"
                         className="w-full"
@@ -188,7 +198,7 @@ const BookingModal = ({ doctorData, user }) => {
                           <input
                             name="appointmentTime"
                             type="time"
-                            defaultValue="10:00"
+                            required
                             className={`${inputTextCls} [color-scheme:light] dark:[color-scheme:dark]`}
                           />
                         </div>
@@ -198,7 +208,6 @@ const BookingModal = ({ doctorData, user }) => {
                         <Label className={labelCls}>Gender</Label>
                         <select
                           name="gender"
-                          defaultValue="Male"
                           className={`${inputWrapperCls} ${inputTextCls} cursor-pointer appearance-none bg-no-repeat bg-[right_14px_center]`}
                         >
                           <option value="Male" className="dark:bg-slate-800">
@@ -234,7 +243,6 @@ const BookingModal = ({ doctorData, user }) => {
                     <Modal.CloseTrigger asChild>
                       <button
                         type="button"
-                        
                         className="text-slate-400 hover:text-slate-700 dark:text-slate-500 dark:hover:text-slate-300 transition-colors cursor-pointer outline-none"
                       >
                         <IoIosClose className="text-4xl" />
